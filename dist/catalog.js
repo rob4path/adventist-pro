@@ -1,6 +1,6 @@
 const categories = [
   { id: 'all', name: 'Toate', icon: 'grid' },
-  { id: 'daruri', name: 'Zecimi și daruri', icon: 'heart' },
+  { id: 'daruri', name: 'Dăruire', icon: 'heart' },
   { id: 'muzica', name: 'Muzică', icon: 'music' },
   { id: 'studiu', name: 'Studiu biblic', icon: 'book' },
   { id: 'carti', name: 'Cărți', icon: 'library' },

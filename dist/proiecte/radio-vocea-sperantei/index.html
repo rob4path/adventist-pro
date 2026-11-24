@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="ro">
+<html lang="ro" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7faf9">
+  <meta name="theme-color" content="#0d171b">
   <base href="../../">
   <title>Radio Vocea Speranței · adventist.pro</title>
   <meta name="description" content="Ascultă muzică creștină și emisiuni despre credință, familie și viața de zi cu zi.">
@@ -15,6 +15,7 @@
   <link rel="canonical" href="https://adventist-pro.techandfriends.ro/proiecte/radio-vocea-sperantei/">
   <link rel="icon" href="assets/semn.svg" type="image/svg+xml">
   <link rel="preload" as="font" href="assets/dm-sans-latin.woff2" type="font/woff2" crossorigin>
+  <script src="theme.js"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="project.css">
   <script src="catalog.js" defer></script>
@@ -31,6 +32,9 @@
         <button class="nav-link about" type="button">Despre catalog</button>
       </nav>
       <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Activează tema luminoasă" hidden>
+          <span class="theme-sun" data-icon="sun"></span><span class="theme-moon" data-icon="moon"></span>
+        </button>
         <a class="saved-nav" href="?salvate=1#catalog"><span data-icon="bookmark"></span><span>Salvate</span><span id="saved-num" hidden></span></a>
         <a class="church-link header-church" href="https://adventist.ro/" target="_blank" rel="noopener noreferrer" aria-label="Site-ul Bisericii Adventiste de Ziua a Șaptea din România">
           <picture>

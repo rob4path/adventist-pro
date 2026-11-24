@@ -58,11 +58,11 @@ function projectPage(project) {
     `<li><div><h3>${html(step.title)}</h3><p>${html(step.text)}</p></div></li>`
   ).join('\n          ');
   return `<!doctype html>
-<html lang="ro">
+<html lang="ro" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7faf9">
+  <meta name="theme-color" content="#0d171b">
   <base href="../../">
   <title>${title} · adventist.pro</title>
   <meta name="description" content="${html(project.summary)}">
@@ -74,6 +74,7 @@ function projectPage(project) {
   <link rel="canonical" href="${origin}/${route}">
   <link rel="icon" href="assets/semn.svg" type="image/svg+xml">
   <link rel="preload" as="font" href="assets/dm-sans-latin.woff2" type="font/woff2" crossorigin>
+  <script src="theme.js"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="project.css">
   <script src="catalog.js" defer></script>

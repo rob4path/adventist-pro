@@ -1,13 +1,14 @@
 <!doctype html>
-<html lang="ro">
+<html lang="ro" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7faf9">
+  <meta name="theme-color" content="#0d171b">
   <meta name="description" content="Descoperă aplicații, site-uri și resurse adventiste în limba română. Explorează catalogul după domeniu sau platformă.">
   <title>adventist.pro — Catalog de proiecte adventiste</title>
   <link rel="icon" href="assets/semn.svg" type="image/svg+xml">
   <link rel="preload" as="font" href="assets/dm-sans-latin.woff2" type="font/woff2" crossorigin>
+  <script src="theme.js"></script>
   <link rel="stylesheet" href="style.css">
   <script src="catalog.js" defer></script>
   <script src="site-ui.js" defer></script>
@@ -23,6 +24,9 @@
         <button class="nav-link about" type="button">Despre proiect</button>
       </nav>
       <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Activează tema luminoasă" hidden>
+          <span class="theme-sun" data-icon="sun"></span><span class="theme-moon" data-icon="moon"></span>
+        </button>
         <button id="saved-nav" class="saved-nav" aria-pressed="false" type="button"><span data-icon="bookmark"></span><span>Salvate</span><span id="saved-num" hidden></span></button>
         <a class="church-link header-church" href="https://adventist.ro/" target="_blank" rel="noopener noreferrer" aria-label="Site-ul Bisericii Adventiste de Ziua a Șaptea din România">
           <picture>

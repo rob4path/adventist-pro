@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="ro">
+<html lang="ro" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7faf9">
+  <meta name="theme-color" content="#0d171b">
   <base href="../../">
   <title>Zecimi și Daruri · adventist.pro</title>
   <meta name="description" content="Oferă online zecimea și darurile pentru biserica ta sau pentru un proiect pe care îl susții.">
@@ -15,6 +15,7 @@
   <link rel="canonical" href="https://adventist-pro.techandfriends.ro/proiecte/zecimi-si-daruri/">
   <link rel="icon" href="assets/semn.svg" type="image/svg+xml">
   <link rel="preload" as="font" href="assets/dm-sans-latin.woff2" type="font/woff2" crossorigin>
+  <script src="theme.js"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="project.css">
   <script src="catalog.js" defer></script>
@@ -31,6 +32,9 @@
         <button class="nav-link about" type="button">Despre catalog</button>
       </nav>
       <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Activează tema luminoasă" hidden>
+          <span class="theme-sun" data-icon="sun"></span><span class="theme-moon" data-icon="moon"></span>
+        </button>
         <a class="saved-nav" href="?salvate=1#catalog"><span data-icon="bookmark"></span><span>Salvate</span><span id="saved-num" hidden></span></a>
         <a class="church-link header-church" href="https://adventist.ro/" target="_blank" rel="noopener noreferrer" aria-label="Site-ul Bisericii Adventiste de Ziua a Șaptea din România">
           <picture>
@@ -45,7 +49,7 @@
     <nav class="crumbs" aria-label="Poziția în catalog"><a href="./#catalog">Catalog</a><span aria-hidden="true">/</span><span aria-current="page">Zecimi și Daruri</span></nav>
     <section class="project-intro" aria-labelledby="project-title">
       <div class="intro-copy">
-        <div class="project-tags"><span class="project-tag"><span data-icon="heart"></span>Zecimi și daruri</span></div>
+        <div class="project-tags"><span class="project-tag"><span data-icon="heart"></span>Dăruire</span></div>
         <h1 id="project-title">Zecimi și Daruri</h1>
         <p class="intro-text">Prin Zecimi și Daruri poți susține biserica locală sau un proiect adventist. Alegi destinația contribuției și suma pe care dorești să o oferi.</p>
         <div class="platform-list" aria-label="Platforme disponibile"><span class="platform-item"><span data-icon="globe"></span>Web</span><span class="platform-item"><span data-icon="android"></span>Android</span><span class="platform-item"><span data-icon="apple"></span>iOS</span></div>
