@@ -36,54 +36,24 @@
 .window-dots i { width: .29rem; height: .29rem; border-radius: 50%; background: #bfcccc; }
 .preview-frame img { display: block; width: 100%; aspect-ratio: 1.95; object-fit: cover; object-position: top center; }
 .project-visual.with-mobile {
-  justify-items: center;
-  gap: clamp(.9rem, 1.6vw, 1.4rem);
-  padding: clamp(.8rem, 1.8vw, 1.5rem);
+  position: relative;
+  padding: 4% 12% 8% 4%;
 }
-.with-mobile > .preview-frame {
-  width: fit-content;
-  max-width: 100%;
-}
-.with-mobile > .preview-frame img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 10.6rem;
-  aspect-ratio: auto;
-}
-.phone-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 1rem clamp(.9rem, 2.3vw, 1.8rem);
-  width: 100%;
-}
-.phone-capture {
-  flex: 0 1 clamp(6.7rem, 30vw, 7.75rem);
-  min-width: 0;
-  margin: 0;
-}
+.with-mobile .preview-frame img { aspect-ratio: 2.15; }
 .phone-preview {
+  position: absolute;
+  inset-inline-end: 3.5%;
+  inset-block-end: 5%;
+  width: 20%;
   display: block;
   overflow: hidden;
   border-radius: 13% / 6.4%;
   background: #14252e;
-  box-shadow: 0 0 0 2px #21333d, 0 .35rem .85rem #10283430;
+  box-shadow: 0 0 0 2px #21333d, 0 .4rem .9rem #10283440;
   cursor: zoom-in;
 }
 .phone-preview img { display: block; width: 100%; height: auto; }
 .phone-preview:focus-visible { outline: 3px solid #00484f; outline-offset: 4px; }
-.phone-capture figcaption {
-  margin-top: .55rem;
-  color: #23444d;
-  font-size: .83rem;
-  font-weight: 650;
-  line-height: 1.4;
-  text-align: center;
-  text-wrap: balance;
-  overflow-wrap: anywhere;
-}
 @media (min-width: 661px) {
   .project-intro:has(> .with-mobile) { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); }
 }

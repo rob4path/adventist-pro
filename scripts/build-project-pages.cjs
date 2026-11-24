@@ -51,28 +51,20 @@ function projectPreview(project) {
               <div class="preview-toolbar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>${html(project.domain)}</span></div>
               <img src="assets/projects/${html(project.preview)}.webp" alt="${html(project.previewAlt)}" fetchpriority="high">
             </div>`;
-  const screenshots = project.mobileScreenshots || [];
+  const screen = project.mobileScreenshots?.[0];
   const classes = 'project-visual visual-' + html(project.cover);
-  if (!screenshots.length) return `<figure class="${classes}">
+  if (!screen) return `<figure class="${classes}">
             ${frame}
           </figure>`;
 
-  const captures = screenshots.map(shot => {
-    const src = 'assets/projects/' + html(shot.file);
-    return `<figure class="phone-capture">
-                <a class="phone-preview" href="${src}">
-                  <span class="sr-only">Deschide captura la dimensiune completă. </span>
-                  <img src="${src}" width="${shot.width}" height="${shot.height}" alt="${html(shot.alt)}">
-                </a>
-                <figcaption>${html(shot.label)}</figcaption>
-              </figure>`;
-  }).join('\n              ');
-  return `<div class="${classes} with-mobile">
+  const src = 'assets/projects/' + html(screen.file);
+  return `<figure class="${classes} with-mobile">
             ${frame}
-            <div class="phone-gallery" role="group" aria-label="Capturi din aplicație">
-              ${captures}
-            </div>
-          </div>`;
+            <a class="phone-preview" href="${src}">
+              <span class="sr-only">Deschide captura la dimensiune completă. </span>
+              <img src="${src}" width="${screen.width}" height="${screen.height}" alt="${html(screen.alt)}">
+            </a>
+          </figure>`;
 }
 
 function projectPage(project) {
