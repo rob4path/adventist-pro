@@ -22,6 +22,11 @@ const sperantaStores = {
   iOS: 'https://apps.apple.com/ro/app/speranta/id1244670970'
 };
 
+const sperantaHome = {
+  file: 'speranta-plus-acasa.webp', width: 480, height: 1039, label: 'Acasă',
+  alt: 'Pagina principală Speranța+, cu versetul zilei și programele TV și radio în direct'
+};
+
 const projects = [
   {
     id: 'toate-lucrurile-noi', title: 'Toate Lucrurile Noi', categories: ['misiune'], cover: 'misiune', preview: 'toate-lucrurile-noi-site', previewAlt: 'Pagina inițiativei Toate Lucrurile Noi în limba română', domain: 'all.things.new',
@@ -76,6 +81,10 @@ const projects = [
   },
   {
     id: 'zecimi-si-daruri', title: 'Zecimi și Daruri', categories: ['daruri'], cover: 'daruri', preview: 'daruri-site', previewAlt: 'Prezentarea oficială Zecimi și Daruri', domain: 'zecimisidaruri.ro',
+    mobileScreenshots: [
+      { file: 'daruri-acasa.webp', width: 370, height: 760, label: 'Acasă', alt: 'Donații rapide și proiecte recomandate în aplicația Zecimi și Daruri' },
+      { file: 'daruri-proiect.webp', width: 340, height: 698, label: 'Detalii proiect', alt: 'Prezentarea unui proiect ADRA în aplicația Zecimi și Daruri' }
+    ],
     summary: 'Oferă online zecimea și darurile pentru biserica ta sau pentru un proiect pe care îl susții.',
     detail: "Prin Zecimi și Daruri poți susține biserica locală sau un proiect adventist. Alegi destinația contribuției și suma pe care dorești să o oferi.",
     guideTitle: "Cum oferi un dar",
@@ -127,6 +136,10 @@ const projects = [
   },
   {
     id: 'mybible', title: 'MyBible', categories: ['studiu'], cover: 'studiu', preview: 'bible-site', previewAlt: 'Pagina de lectură biblică din MyBible', domain: 'mybible.eu',
+    mobileScreenshots: [
+      { file: 'bible-mobile.webp', width: 340, height: 712, label: 'Lectură', alt: 'Capitolul 1 din Geneza, cu versete evidențiate în aplicația MyBible' },
+      { file: 'bible-cautare.webp', width: 390, height: 818, label: 'Căutare', alt: 'Rezultatele căutării în MyBible, cu filtre pe cărți și testamente' }
+    ],
     summary: 'Citește Biblia în mai multe traduceri și urmează un plan de studiu în ritmul tău.',
     detail: "Pe MyBible poți citi același pasaj în traduceri diferite sau poți urma un plan de lectură. Platforma reunește textul biblic, devoționale și studii pentru Școala de Sabat.",
     guideTitle: "Cum studiezi un pasaj",
@@ -224,6 +237,10 @@ const projects = [
   },
   {
     id: 'radio-vocea-sperantei', title: 'Radio Vocea Speranței', categories: ['media'], cover: 'muzica', preview: 'rvs-site', previewAlt: 'Pagina principală Radio Vocea Speranței', domain: 'rvs.ro',
+    mobileScreenshots: [
+      { file: 'speranta-fm-live.webp', width: 480, height: 1039, label: 'Radio în direct', alt: 'Emisiunea Speranța FM în direct, cu butonul de redare din aplicația Speranța+' },
+      sperantaHome
+    ],
     summary: 'Ascultă muzică creștină și emisiuni despre credință, familie și viața de zi cu zi.',
     detail: "Radio Vocea Speranței transmite muzică creștină, interviuri și emisiuni despre credință, familie și societate. Poți asculta postul în direct sau poți reveni la o ediție din arhivă.",
     guideTitle: "Cum asculți radioul",
@@ -245,6 +262,10 @@ const projects = [
   },
   {
     id: 'speranta-tv', title: 'Speranța TV', categories: ['media'], cover: 'tv', wordmark: 'tv-logo.webp', preview: 'tv-site', previewAlt: 'Pagina principală Speranța TV', domain: 'sperantatv.ro',
+    mobileScreenshots: [
+      { file: 'speranta-tv-live.webp', width: 480, height: 1039, label: 'TV în direct', alt: 'Playerul video Speranța TV și grila de programe în aplicația Speranța+' },
+      sperantaHome
+    ],
     summary: 'Urmărește în direct programe creștine sau alege o emisiune din arhiva video.',
     detail: "Speranța TV transmite emisiuni, predici, interviuri și concerte. Poți urmări postul în direct pe site, poți reveni la o înregistrare sau poți folosi aplicația Speranța+ pe telefon.",
     guideTitle: "Cum urmărești o emisiune",

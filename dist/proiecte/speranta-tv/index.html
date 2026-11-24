@@ -49,10 +49,21 @@
             </div>
             <label class="share-fallback" hidden>Adresa paginii<input type="url" readonly></label>
           </div>
-          <figure class="project-visual visual-tv">
-            <div class="preview-frame">
+          <figure class="project-visual visual-tv with-mobile">
+            <div class="device-previews">
+              <div class="preview-frame">
               <div class="preview-toolbar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>sperantatv.ro</span></div>
               <img src="assets/projects/tv-site.webp" alt="Pagina principală Speranța TV" fetchpriority="high">
+            </div>
+              <a class="phone-preview" id="mobile-preview" href="assets/projects/speranta-tv-live.webp" title="Deschide captura la dimensiune completă">
+                <span class="sr-only">Deschide captura la dimensiune completă. </span>
+                <img src="assets/projects/speranta-tv-live.webp" width="480" height="1039" alt="Playerul video Speranța TV și grila de programe în aplicația Speranța+">
+              </a>
+            </div><div class="phone-choices" role="group" aria-label="Capturi din aplicație" hidden>
+              <button type="button" aria-pressed="true" aria-controls="mobile-preview"
+                data-src="assets/projects/speranta-tv-live.webp" data-alt="Playerul video Speranța TV și grila de programe în aplicația Speranța+" data-width="480" data-height="1039">TV în direct</button>
+              <button type="button" aria-pressed="false" aria-controls="mobile-preview"
+                data-src="assets/projects/speranta-plus-acasa.webp" data-alt="Pagina principală Speranța+, cu versetul zilei și programele TV și radio în direct" data-width="480" data-height="1039">Acasă</button>
             </div>
           </figure>
         </div>

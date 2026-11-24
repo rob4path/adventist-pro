@@ -46,6 +46,34 @@ function linksPanel(project) {
   return sections.length ? '<aside class="links-panel" aria-label="Resurse oficiale">' + sections.join('\n') + '</aside>' : '';
 }
 
+function projectPreview(project) {
+  const frame = `<div class="preview-frame">
+              <div class="preview-toolbar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>${html(project.domain)}</span></div>
+              <img src="assets/projects/${html(project.preview)}.webp" alt="${html(project.previewAlt)}" fetchpriority="high">
+            </div>`;
+  const screenshots = project.mobileScreenshots || [];
+  const first = screenshots[0];
+  const classes = 'project-visual visual-' + html(project.cover);
+  if (!first) return `<figure class="${classes}">
+            ${frame}
+          </figure>`;
+
+  const src = 'assets/projects/' + html(first.file);
+  const choices = screenshots.length > 1 ? `<div class="phone-choices" role="group" aria-label="Capturi din aplicație" hidden>
+              ${screenshots.map((shot, index) => `<button type="button" aria-pressed="${index === 0}" aria-controls="mobile-preview"
+                data-src="assets/projects/${html(shot.file)}" data-alt="${html(shot.alt)}" data-width="${shot.width}" data-height="${shot.height}">${html(shot.label)}</button>`).join('\n              ')}
+            </div>` : '';
+  return `<figure class="${classes} with-mobile">
+            <div class="device-previews">
+              ${frame}
+              <a class="phone-preview" id="mobile-preview" href="${src}" title="Deschide captura la dimensiune completă">
+                <span class="sr-only">Deschide captura la dimensiune completă. </span>
+                <img src="${src}" width="${first.width}" height="${first.height}" alt="${html(first.alt)}">
+              </a>
+            </div>${choices}
+          </figure>`;
+}
+
 function projectPage(project) {
   const route = 'proiecte/' + project.id + '/';
   const title = html(project.title);
@@ -101,12 +129,7 @@ function projectPage(project) {
             </div>
             <label class="share-fallback" hidden>Adresa paginii<input type="url" readonly></label>
           </div>
-          <figure class="project-visual visual-${project.cover}">
-            <div class="preview-frame">
-              <div class="preview-toolbar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>${html(project.domain)}</span></div>
-              <img src="assets/projects/${project.preview}.webp" alt="${html(project.previewAlt)}" fetchpriority="high">
-            </div>
-          </figure>
+          ${projectPreview(project)}
         </div>
       </div>
     </header>

@@ -49,10 +49,21 @@
             </div>
             <label class="share-fallback" hidden>Adresa paginii<input type="url" readonly></label>
           </div>
-          <figure class="project-visual visual-studiu">
-            <div class="preview-frame">
+          <figure class="project-visual visual-studiu with-mobile">
+            <div class="device-previews">
+              <div class="preview-frame">
               <div class="preview-toolbar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>mybible.eu</span></div>
               <img src="assets/projects/bible-site.webp" alt="Pagina de lectură biblică din MyBible" fetchpriority="high">
+            </div>
+              <a class="phone-preview" id="mobile-preview" href="assets/projects/bible-mobile.webp" title="Deschide captura la dimensiune completă">
+                <span class="sr-only">Deschide captura la dimensiune completă. </span>
+                <img src="assets/projects/bible-mobile.webp" width="340" height="712" alt="Capitolul 1 din Geneza, cu versete evidențiate în aplicația MyBible">
+              </a>
+            </div><div class="phone-choices" role="group" aria-label="Capturi din aplicație" hidden>
+              <button type="button" aria-pressed="true" aria-controls="mobile-preview"
+                data-src="assets/projects/bible-mobile.webp" data-alt="Capitolul 1 din Geneza, cu versete evidențiate în aplicația MyBible" data-width="340" data-height="712">Lectură</button>
+              <button type="button" aria-pressed="false" aria-controls="mobile-preview"
+                data-src="assets/projects/bible-cautare.webp" data-alt="Rezultatele căutării în MyBible, cu filtre pe cărți și testamente" data-width="390" data-height="818">Căutare</button>
             </div>
           </figure>
         </div>
