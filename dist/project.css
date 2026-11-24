@@ -1,24 +1,32 @@
 .project-main { padding-bottom: 3rem; }
-.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin: 1.35rem 0; color: var(--muted); font-size: .88rem; }
-.crumbs a { color: var(--primary); font-weight: 600; }
+.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin: clamp(1.6rem, 3vw, 2.65rem) 0 1.45rem; color: #d9e9e8; font-size: .88rem; }
+.crumbs a { color: #a2e6db; font-weight: 600; }
 .crumbs a:hover { text-decoration: underline; }
-.crumbs span[aria-hidden] { color: var(--muted); }
-.project-intro { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border: 1px solid var(--line); border-radius: 1.15rem; background: var(--surface); }
-.intro-copy { min-width: 0; align-self: center; padding: clamp(1.55rem, 3.3vw, 3.1rem); }
+.crumbs span[aria-hidden] { color: #8baeb2; }
+.project-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-bottom: clamp(2rem, 4vw, 3.75rem);
+}
+.intro-copy { min-width: 0; }
 .project-tags, .project-tag, .project-actions, .copy-link { display: flex; align-items: center; }
 .project-tags, .project-actions { flex-wrap: wrap; gap: .6rem; }
-.project-tag { gap: .4rem; font-size: .8rem; font-weight: 650; color: var(--primary); background: var(--accent-soft); padding: .28rem .6rem; border-radius: .4rem; }
+.project-tag { gap: .4rem; font-size: .8rem; font-weight: 650; color: #b4f1e7; background: #194349; border: 1px solid #416e73; padding: .28rem .6rem; border-radius: .4rem; }
 .project-tag .icon { width: .88rem; height: .88rem; }
-.project-intro h1 { margin: .85rem 0 .7rem; color: var(--ink); font-size: clamp(2.15rem, 3.8vw, 3.65rem); line-height: 1.06; letter-spacing: -.055em; }
-.intro-text { max-width: 49ch; color: var(--copy); font-size: 1.05rem; line-height: 1.66; }
+.project-intro h1 { margin: .85rem 0 .7rem; color: #f4fbfa; font-size: clamp(2.15rem, 3.8vw, 3.65rem); line-height: 1.06; letter-spacing: -.055em; }
+.intro-text { max-width: 49ch; color: #d9e8e8; font-size: 1.05rem; line-height: 1.66; }
 .project-intro .platform-list { margin: .9rem 0 1.3rem; }
-.project-intro .platform-item { font-size: .83rem; color: var(--muted); }
+.project-intro .platform-item { font-size: .83rem; color: #bfd6d7; }
 .project-actions a, .copy-link { min-height: 2.65rem; }
-.copy-link { gap: .45rem; padding: .59rem .85rem; border: 1px solid var(--control-line); border-radius: .6rem; color: var(--ink); font-size: .91rem; font-weight: 600; background: var(--control); }
-.copy-link:hover { background: var(--hover); border-color: var(--accent-line); }
-.share-fallback { display: block; font-size: .85rem; margin-top: 1rem; color: var(--muted); }
+.project-actions .dark-button { background: #91ded5; color: #102f34; }
+.project-actions .dark-button:hover { background: #b1ede6; }
+.copy-link { gap: .45rem; padding: .59rem .85rem; border: 1px solid #7b9da1; border-radius: .6rem; color: #effbfa; font-size: .91rem; font-weight: 600; background: #14343d; }
+.copy-link:hover { background: #244d55; border-color: #a3ded8; }
+.share-fallback { display: block; font-size: .85rem; margin-top: 1rem; color: #d9e8e8; }
 .share-fallback input { display: block; width: 100%; border: 1px solid var(--line); border-radius: .4rem; padding: .4rem; background: var(--control); color: var(--ink); }
-.project-visual { display: grid; align-content: center; margin: 0; min-width: 0; padding: clamp(1.4rem, 3vw, 3rem); background: linear-gradient(135deg,#e3f4ee,#afdad8); }
+.project-visual { display: grid; align-content: center; margin: 0; min-width: 0; border-radius: 1rem; padding: clamp(1.15rem, 2.55vw, 2.45rem); background: linear-gradient(135deg,#e3f4ee,#afdad8); }
 .visual-daruri, .visual-tv, .visual-muzica { background: linear-gradient(125deg,#e7f1ff,#b5cfe8); }
 .visual-carti { background: linear-gradient(125deg,#fbefda,#e8ceae); }
 .visual-imnuri { background: linear-gradient(125deg,#e6f1ea,#bdd6c9); }
@@ -27,7 +35,7 @@
 .window-dots { display: flex; gap: .2rem; }
 .window-dots i { width: .29rem; height: .29rem; border-radius: 50%; background: #bfcccc; }
 .preview-frame img { display: block; width: 100%; aspect-ratio: 1.95; object-fit: cover; object-position: top center; }
-.project-info { display: grid; grid-template-columns: 1.55fr 1fr; align-items: start; gap: 1.3rem; margin-top: 1.35rem; }
+.project-info { display: grid; grid-template-columns: 1.55fr 1fr; align-items: start; gap: 1.3rem; margin-top: clamp(1.5rem, 3vw, 2.5rem); }
 .project-guide,.links-panel { border-radius: 1rem; border: 1px solid var(--line); background: var(--surface); padding: clamp(1.35rem, 2.3vw, 2.15rem); }
 .project-info h2 { font-size: clamp(1.25rem, 2vw, 1.65rem); line-height: 1.24; }
 .steps { counter-reset: guide; list-style: none; margin: 1.3rem 0 0; padding: 0; }
@@ -45,5 +53,5 @@
 .resource-link strong, .resource-link small { display: block; }
 .resource-link strong { font-size: .95rem; font-weight: 625; }
 .resource-link small { color: var(--muted); font-size: .79rem; }
-@media(max-width:820px) { .project-info { grid-template-columns: 1.25fr 1fr; gap: 1rem; } .project-intro { grid-template-columns: 1.15fr 1fr; } .intro-copy,.project-visual { padding: 1.4rem; } }
-@media(max-width:660px) { .crumbs { margin: 1rem 0; } .project-intro,.project-info { grid-template-columns: 1fr; } .project-info { gap: 1rem; margin-top: 1rem; } .project-visual { padding: 1.25rem; } .intro-text { font-size: 1rem; } .project-intro h1 { font-size: 2.25rem; } .preview-frame img { aspect-ratio: 2.25; } .project-main { padding-bottom: 2rem; } }
+@media(max-width:820px) { .project-info { grid-template-columns: 1.25fr 1fr; gap: 1rem; } .project-intro { grid-template-columns: 1.15fr 1fr; gap: 1.6rem; } }
+@media(max-width:660px) { .crumbs { margin: 1.6rem 0 1.25rem; } .project-intro,.project-info { grid-template-columns: 1fr; } .project-info { gap: 1rem; margin-top: 1rem; } .project-visual { padding: 1.25rem; } .intro-text { font-size: 1rem; } .project-intro h1 { font-size: 2.25rem; } .preview-frame img { aspect-ratio: 2.25; } .project-main { padding-bottom: 2rem; } }

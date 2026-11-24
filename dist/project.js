@@ -1,6 +1,3 @@
-updateSavedCount(readSavedProjects().size);
-window.addEventListener('pageshow', () => updateSavedCount(readSavedProjects().size));
-
 const copyButton = get('copy-link');
 copyButton.hidden = false;
 copyButton.addEventListener('click', async () => {

@@ -6,12 +6,8 @@ const dist = path.resolve(__dirname, '../dist');
 const home = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
 const origin = 'https://adventist-pro.techandfriends.ro';
 
-// Keep the directory header, footer and about dialog identical on every page.
-const header = home.slice(home.indexOf('  <header'), home.indexOf('  <main'))
-  .replace(' aria-current="page"', '')
-  .replace(/<button id="saved-nav"[^>]*>(.*?)<\/button>/,
-    '<a class="saved-nav" href="?salvate=1#catalog">$1</a>')
-  .replace('Despre proiect', 'Despre catalog');
+// Reuse the catalog identity, footer and about dialog on each presentation page.
+const identity = home.split('<!-- shared-identity:start -->')[1].split('<!-- shared-identity:end -->')[0].trimEnd();
 const footer = home.slice(home.indexOf('  <footer>'), home.indexOf('</body>'))
   .replace('Despre proiect', 'Despre catalog');
 const categoryById = new Map(categories.map(category => [category.id, category]));
@@ -83,28 +79,32 @@ function projectPage(project) {
 </head>
 <body class="project-page">
   <a class="skip" href="${route}#prezentare">Sari la prezentare</a>
-${header}  <main id="prezentare" class="wrap project-main">
-    <nav class="crumbs" aria-label="Poziția în catalog"><a href="./#catalog">Catalog</a><span aria-hidden="true">/</span><span aria-current="page">${title}</span></nav>
-    <section class="project-intro" aria-labelledby="project-title">
-      <div class="intro-copy">
-        <div class="project-tags">${tags}</div>
-        <h1 id="project-title">${title}</h1>
-        <p class="intro-text">${html(project.detail)}</p>
-        <div class="platform-list" aria-label="Platforme disponibile">${platforms}</div>
-        <div class="project-actions">
-          <a class="dark-button" href="${html(project.url)}" target="_blank" rel="noopener noreferrer"><span data-icon="globe"></span>Deschide site-ul</a>
-          <button class="copy-link" type="button" id="copy-link" hidden><span data-icon="link"></span>Copiază linkul</button>
+  <main id="prezentare" class="project-main">
+    <header class="project-banner" aria-labelledby="project-title">
+      <div class="wrap feature-shell">${identity}
+        <nav class="crumbs" aria-label="Poziția în catalog"><a href="./#catalog">Catalog</a><span aria-hidden="true">/</span><span aria-current="page">${title}</span></nav>
+        <div class="project-intro">
+          <div class="intro-copy">
+            <div class="project-tags">${tags}</div>
+            <h1 id="project-title">${title}</h1>
+            <p class="intro-text">${html(project.detail)}</p>
+            <div class="platform-list" aria-label="Platforme disponibile">${platforms}</div>
+            <div class="project-actions">
+              <a class="dark-button" href="${html(project.url)}" target="_blank" rel="noopener noreferrer"><span data-icon="globe"></span>Deschide site-ul</a>
+              <button class="copy-link" type="button" id="copy-link" hidden><span data-icon="link"></span>Copiază linkul</button>
+            </div>
+            <label class="share-fallback" hidden>Adresa paginii<input type="url" readonly></label>
+          </div>
+          <figure class="project-visual visual-${project.cover}">
+            <div class="preview-frame">
+              <div class="preview-toolbar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>${html(project.domain)}</span></div>
+              <img src="assets/projects/${project.preview}.webp" alt="${html(project.previewAlt)}" fetchpriority="high">
+            </div>
+          </figure>
         </div>
-        <label class="share-fallback" hidden>Adresa paginii<input type="url" readonly></label>
       </div>
-      <figure class="project-visual visual-${project.cover}">
-        <div class="preview-frame">
-          <div class="preview-toolbar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>${html(project.domain)}</span></div>
-          <img src="assets/projects/${project.preview}.webp" alt="${html(project.previewAlt)}" fetchpriority="high">
-        </div>
-      </figure>
-    </section>
-    <div class="project-info">
+    </header>
+    <div class="wrap project-info">
       <section class="project-guide" aria-labelledby="guide-title">
         <h2 id="guide-title">${html(project.guideTitle)}</h2>
         <ol class="steps">

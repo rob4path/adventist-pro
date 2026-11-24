@@ -16,59 +16,59 @@
 </head>
 <body>
   <a class="skip" href="#catalog">Sari la catalog</a>
-  <header class="masthead">
-    <div class="wrap masthead-inner">
-      <a class="brand home" href="#acasa" aria-label="adventist.pro, pagina principală"><img src="assets/semn.svg" width="35" height="35" alt=""><span>adventist<span class="brand-suffix">.pro</span></span></a>
-      <nav aria-label="Navigare principală">
-        <a class="nav-link nav-catalog" href="#catalog" aria-current="page">Explorează</a>
-        <button class="nav-link about" type="button">Despre proiect</button>
-      </nav>
-      <div class="header-actions">
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Activează tema luminoasă" hidden>
-          <span class="theme-sun" data-icon="sun"></span><span class="theme-moon" data-icon="moon"></span>
-        </button>
-        <button id="saved-nav" class="saved-nav" aria-pressed="false" type="button"><span data-icon="bookmark"></span><span>Salvate</span><span id="saved-num" hidden></span></button>
-        <a class="church-link header-church" href="https://adventist.ro/" target="_blank" rel="noopener noreferrer" aria-label="Site-ul Bisericii Adventiste de Ziua a Șaptea din România">
-          <picture>
-            <source media="(max-width: 900px)" srcset="assets/simbol-adventist.svg">
-            <img src="assets/biserica-adventista-ro.svg" width="704" height="159" alt="Biserica Adventistă de Ziua a Șaptea din România">
-          </picture>
-        </a>
-      </div>
-    </div>
-  </header>
-  <main id="acasa" class="wrap">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <div class="eyebrow"><span data-icon="grid"></span>Catalog digital</div>
-        <h1 id="hero-title">Proiecte adventiste,<br><span>într-un singur loc.</span></h1>
-        <p>Descoperă aplicații și site-uri pentru studiu, închinare<br class="desktop-break"> și viața comunității adventiste din România.</p>
-        <form id="search-form" class="search" role="search">
-          <span data-icon="search"></span>
-          <label class="sr-only" for="search-input">Caută în catalog</label>
-          <input type="search" id="search-input" placeholder="Caută o aplicație, un site sau o resursă…" autocomplete="off" enterkeyhint="search">
-          <kbd id="shortcut" aria-hidden="true">/</kbd>
-          <button id="clear-search" hidden type="button" aria-label="Șterge căutarea"><span data-icon="x"></span></button>
-        </form>
-      </div>
-      <div class="hero-art" aria-label="Proiecte din catalog">
-        <div class="star-field" aria-hidden="true"></div>
-        <div class="orbits" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="tile-space">
-          <a class="app-tile tile-bible" href="proiecte/mybible/" aria-label="Detalii despre myBible"><img alt="" src="assets/projects/bible-logo.svg"></a>
-          <a class="app-tile tile-gift" href="proiecte/zecimi-si-daruri/" aria-label="Detalii despre Zecimi și Daruri"><img alt="" src="assets/projects/daruri-logo.svg"></a>
-          <a class="app-tile tile-radio" href="proiecte/radio-vocea-sperantei/" aria-label="Detalii despre Radio Vocea Speranței"><span class="radio-symbol"><img alt="" src="assets/projects/rvs-logo.webp"></span></a>
+  <main id="acasa">
+    <header class="hero site-hero" aria-labelledby="hero-title">
+      <div class="wrap feature-shell">
+        <!-- shared-identity:start -->
+        <div class="feature-identity">
+          <a class="brand home" href="#acasa" aria-label="adventist.pro, pagina principală"><img src="assets/semn.svg" width="35" height="35" alt=""><span>adventist<span class="brand-suffix">.pro</span></span></a>
+          <div class="feature-controls">
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Activează tema luminoasă" hidden>
+              <span class="theme-sun" data-icon="sun"></span><span class="theme-moon" data-icon="moon"></span>
+            </button>
+            <a class="church-link header-church" href="https://adventist.ro/" target="_blank" rel="noopener noreferrer" aria-label="Site-ul Bisericii Adventiste de Ziua a Șaptea din România">
+              <picture>
+                <source media="(max-width: 900px)" srcset="assets/simbol-adventist.svg">
+                <img src="assets/biserica-adventista-ro.svg" width="704" height="159" alt="Biserica Adventistă de Ziua a Șaptea din România">
+              </picture>
+            </a>
+          </div>
+        </div>
+        <!-- shared-identity:end -->
+        <div class="hero-copy">
+          <div class="eyebrow"><span data-icon="grid"></span>Catalog digital</div>
+          <h1 id="hero-title">Proiecte adventiste,<br><span>într-un singur loc.</span></h1>
+          <p>Descoperă aplicații și site-uri pentru studiu, închinare<br class="desktop-break"> și viața comunității adventiste din România.</p>
+          <form id="search-form" class="search" role="search">
+            <span data-icon="search"></span>
+            <label class="sr-only" for="search-input">Caută în catalog</label>
+            <input type="search" id="search-input" placeholder="Caută o aplicație, un site sau o resursă…" autocomplete="off" enterkeyhint="search">
+            <kbd id="shortcut" aria-hidden="true">/</kbd>
+            <button id="clear-search" hidden type="button" aria-label="Șterge căutarea"><span data-icon="x"></span></button>
+          </form>
+        </div>
+        <div class="hero-art" aria-label="Proiecte din catalog">
+          <div class="star-field" aria-hidden="true"></div>
+          <div class="orbits" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="tile-space">
+            <a class="app-tile tile-bible" href="proiecte/mybible/" aria-label="Detalii despre myBible"><img alt="" src="assets/projects/bible-logo.svg"></a>
+            <a class="app-tile tile-gift" href="proiecte/zecimi-si-daruri/" aria-label="Detalii despre Zecimi și Daruri"><img alt="" src="assets/projects/daruri-logo.svg"></a>
+            <a class="app-tile tile-radio" href="proiecte/radio-vocea-sperantei/" aria-label="Detalii despre Radio Vocea Speranței"><span class="radio-symbol"><img alt="" src="assets/projects/rvs-logo.webp"></span></a>
+          </div>
         </div>
       </div>
-    </section>
-    <section id="catalog" aria-labelledby="catalog-title">
+    </header>
+    <section class="wrap" id="catalog" aria-labelledby="catalog-title">
       <div class="catalog-heading">
         <div class="title-cluster"><h2 id="catalog-title" tabindex="-1">Explorează proiectele</h2><span id="total">6</span></div>
-        <div class="platform-control">
-          <span data-icon="sliders"></span>
-          <label class="sr-only" for="platform">Filtrează după platformă</label>
-          <select id="platform"><option value="">Toate platformele</option><option value="Web">Web</option><option value="Android">Android</option><option value="iOS">iOS</option></select>
-          <span data-icon="chevron"></span>
+        <div class="catalog-tools">
+          <button id="saved-nav" class="saved-nav" aria-pressed="false" type="button"><span data-icon="bookmark"></span><span>Salvate</span><span id="saved-num" hidden></span></button>
+          <div class="platform-control">
+            <span data-icon="sliders"></span>
+            <label class="sr-only" for="platform">Filtrează după platformă</label>
+            <select id="platform"><option value="">Toate platformele</option><option value="Web">Web</option><option value="Android">Android</option><option value="iOS">iOS</option></select>
+            <span data-icon="chevron"></span>
+          </div>
         </div>
       </div>
       <div id="categories" role="group" aria-label="Categorii de proiecte"></div>

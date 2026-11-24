@@ -93,9 +93,6 @@ function render() {
   get('result-status').textContent = filtered.length === 1 ? 'Un proiect afișat.' : filtered.length + ' proiecte afișate.';
   updateSavedCount(saved.size);
   savedNav.setAttribute('aria-pressed', String(savedOnly));
-  const nav = document.querySelector('.nav-catalog');
-  if (savedOnly) nav.removeAttribute('aria-current');
-  else nav.setAttribute('aria-current', 'page');
   categoriesBar.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.category === selected)));
   get('shortcut').hidden = !!search.value;
   get('clear-search').hidden = !search.value;
@@ -168,11 +165,8 @@ platform.addEventListener('change', render);
 get('reset').addEventListener('click', () => { clearSelection(); scrollToCatalog(); });
 savedNav.addEventListener('click', () => {
   setSavedView(!savedOnly);
-  resetFilters();
   render();
-  scrollToCatalog();
 });
-document.querySelector('.nav-catalog').addEventListener('click', () => { clearSelection(); });
 document.querySelectorAll('.home').forEach(link => link.addEventListener('click', event => {
   event.preventDefault();
   clearSelection();
