@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#244a3a">
+  <meta name="description" content="Descoperă aplicații, site-uri și resurse adventiste în limba română. Explorează catalogul după domeniu sau platformă.">
+  <title>adventist.pro — Catalog de proiecte adventiste</title>
+  <link rel="icon" href="assets/semn.svg" type="image/svg+xml">
+  <link rel="preload" as="font" href="assets/baskervville.ttf" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <script src="catalog.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#catalog">Sari la catalog</a>
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <a class="brand home" href="#acasa" aria-label="adventist.pro, pagina principală"><img src="assets/semn.svg" width="35" height="35" alt=""><span>adventist<span class="brand-suffix">.pro</span></span></a>
+      <nav aria-label="Navigare principală">
+        <a class="nav-link nav-catalog" href="#catalog" aria-current="page">Catalog</a>
+        <button class="nav-link about" type="button">Despre proiect</button>
+      </nav>
+      <button id="saved-nav" class="saved-nav" aria-pressed="false" type="button"><span data-icon="bookmark"></span><span>Salvate</span><span id="saved-num" hidden></span></button>
+    </div>
+  </header>
+  <main id="acasa" class="wrap">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span>Descoperă adventist.pro</div>
+        <h1 id="hero-title">Proiecte adventiste,<br><em>într-un singur loc.</em></h1>
+        <p>Aplicații, site-uri și resurse digitale pentru viața de credință<br class="desktop-break"> și comunitatea ta.</p>
+        <form id="search-form" class="search" role="search">
+          <span data-icon="search"></span>
+          <label class="sr-only" for="search-input">Caută în catalog</label>
+          <input type="search" id="search-input" placeholder="Caută un proiect, o aplicație…" autocomplete="off" enterkeyhint="search">
+          <kbd id="shortcut" aria-hidden="true">/</kbd>
+          <button id="clear-search" hidden type="button" aria-label="Șterge căutarea"><span data-icon="x"></span></button>
+        </form>
+      </div>
+      <div class="hero-image"><img src="assets/coperta.webp" alt="" width="1200" height="800" fetchpriority="high"></div>
+    </section>
+    <section id="catalog" aria-labelledby="catalog-title">
+      <div class="catalog-heading">
+        <div class="title-cluster"><h2 id="catalog-title" tabindex="-1">Catalog de proiecte</h2><span id="total">6</span></div>
+        <div class="platform-control">
+          <span data-icon="sliders"></span>
+          <label class="sr-only" for="platform">Filtrează după platformă</label>
+          <select id="platform"><option value="">Toate platformele</option><option value="Web">Web</option><option value="Android">Android</option><option value="iOS">iOS</option></select>
+          <span data-icon="chevron"></span>
+        </div>
+      </div>
+      <div id="categories" role="group" aria-label="Categorii de proiecte"></div>
+      <span id="result-status" class="sr-only" role="status"></span>
+      <div id="cards" class="cards"></div>
+      <div id="empty" hidden class="empty"><span class="empty-icon" data-icon="search"></span><h3 id="empty-title"></h3><p id="empty-description"></p><button class="dark-button" id="reset">Arată toate proiectele</button></div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-inner"><a class="brand home" href="#acasa"><img src="assets/semn.svg" width="25" height="25" alt=""><span>adventist<span class="brand-suffix">.pro</span></span></a><button class="about" type="button">Despre proiect</button></div></footer>
+  <dialog id="details" aria-labelledby="dialog-title">
+    <div id="dialog-content"></div>
+    <button id="close-dialog" class="round-button" type="button" aria-label="Închide detaliile"><span data-icon="x"></span></button>
+  </dialog>
+  <div id="notice" role="status" class="notice" hidden></div>
+</body>
+</html>
