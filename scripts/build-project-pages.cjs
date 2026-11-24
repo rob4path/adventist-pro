@@ -1,0 +1,125 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const { projects, categories } = require('../dist/catalog.js');
+
+const dist = path.resolve(__dirname, '../dist');
+const home = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
+const origin = 'https://adventist-pro.techandfriends.ro';
+
+// Keep the directory header, footer and about dialog identical on every page.
+const header = home.slice(home.indexOf('  <header'), home.indexOf('  <main'))
+  .replace(' aria-current="page"', '')
+  .replace(/<button id="saved-nav"[^>]*>(.*?)<\/button>/,
+    '<a class="saved-nav" href="?salvate=1#catalog">$1</a>')
+  .replace('Despre proiect', 'Despre catalog');
+const footer = home.slice(home.indexOf('  <footer>'), home.indexOf('</body>'))
+  .replace('Despre proiect', 'Despre catalog');
+const categoryById = new Map(categories.map(category => [category.id, category]));
+const platformIcons = { Web: 'globe', Android: 'android', iOS: 'apple' };
+
+function html(value) {
+  return String(value).replace(/[&<>"']/g, character => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[character]);
+}
+
+function linkRow(url, label, icon, description) {
+  return `<a class="resource-link" href="${html(url)}" target="_blank" rel="noopener noreferrer">
+    <span class="resource-icon" data-icon="${icon}"></span>
+    <span><strong>${html(label)}</strong><small>${html(description)}</small></span>
+  </a>`;
+}
+
+function linksPanel(project) {
+  const resources = (project.links || []).map(link =>
+    linkRow(link.url, link.label, 'globe', new URL(link.url).hostname.replace(/^www\./, ''))
+  ).join('');
+  const appName = ['speranta-tv', 'radio-vocea-sperantei'].includes(project.id) ? 'Speranța+' : project.title;
+  const stores = Object.entries(project.stores || {}).map(([name, url]) =>
+    linkRow(url, name === 'Android' ? 'Google Play' : 'App Store', platformIcons[name], appName + ' · ' + name)
+  ).join('');
+  return `<aside class="links-panel" aria-label="Resurse oficiale">
+    ${resources ? '<section><h2>Linkuri utile</h2>' + resources + '</section>' : ''}
+    ${stores ? '<section><h2>Aplicația mobilă</h2>' + stores + '</section>' : ''}
+  </aside>`;
+}
+
+function projectPage(project) {
+  const route = 'proiecte/' + project.id + '/';
+  const title = html(project.title);
+  const tags = project.categories.map(id => {
+    const category = categoryById.get(id);
+    return `<span class="project-tag"><span data-icon="${category.icon}"></span>${html(category.name)}</span>`;
+  }).join('');
+  const platforms = project.platforms.map(name =>
+    `<span class="platform-item"><span data-icon="${platformIcons[name]}"></span>${name}</span>`
+  ).join('');
+  const steps = project.steps.map(step =>
+    `<li><div><h3>${html(step.title)}</h3><p>${html(step.text)}</p></div></li>`
+  ).join('\n          ');
+  return `<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7faf9">
+  <base href="../../">
+  <title>${title} · adventist.pro</title>
+  <meta name="description" content="${html(project.summary)}">
+  <meta property="og:title" content="${title} · adventist.pro">
+  <meta property="og:description" content="${html(project.summary)}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="${origin}/assets/projects/${project.preview}.webp">
+  <meta property="og:image:alt" content="${html(project.previewAlt)}">
+  <link rel="canonical" href="${origin}/${route}">
+  <link rel="icon" href="assets/semn.svg" type="image/svg+xml">
+  <link rel="preload" as="font" href="assets/dm-sans-latin.woff2" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="project.css">
+  <script src="catalog.js" defer></script>
+  <script src="site-ui.js" defer></script>
+  <script src="project.js" defer></script>
+</head>
+<body class="project-page">
+  <a class="skip" href="${route}#prezentare">Sari la prezentare</a>
+${header}  <main id="prezentare" class="wrap project-main">
+    <nav class="crumbs" aria-label="Poziția în catalog"><a href="./#catalog">Catalog</a><span aria-hidden="true">/</span><span aria-current="page">${title}</span></nav>
+    <section class="project-intro" aria-labelledby="project-title">
+      <div class="intro-copy">
+        <div class="project-tags">${tags}</div>
+        <h1 id="project-title">${title}</h1>
+        <p class="intro-text">${html(project.detail)}</p>
+        <div class="platform-list" aria-label="Platforme disponibile">${platforms}</div>
+        <div class="project-actions">
+          <a class="dark-button" href="${html(project.url)}" target="_blank" rel="noopener noreferrer"><span data-icon="globe"></span>Deschide site-ul</a>
+          <button class="copy-link" type="button" id="copy-link" hidden><span data-icon="link"></span>Copiază linkul</button>
+        </div>
+        <label class="share-fallback" hidden>Adresa paginii<input type="url" readonly></label>
+      </div>
+      <figure class="project-visual visual-${project.cover}">
+        <div class="preview-frame">
+          <div class="preview-toolbar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>${html(project.domain)}</span></div>
+          <img src="assets/projects/${project.preview}.webp" alt="${html(project.previewAlt)}" fetchpriority="high">
+        </div>
+      </figure>
+    </section>
+    <div class="project-info">
+      <section class="project-guide" aria-labelledby="guide-title">
+        <h2 id="guide-title">${html(project.guideTitle)}</h2>
+        <ol class="steps">
+          ${steps}
+        </ol>
+      </section>
+      ${linksPanel(project)}
+    </div>
+  </main>
+${footer}</body>
+</html>
+`;
+}
+
+for (const project of projects) {
+  const directory = path.join(dist, 'proiecte', project.id);
+  fs.mkdirSync(directory, { recursive: true });
+  fs.writeFileSync(path.join(directory, 'index.html'), projectPage(project));
+}
