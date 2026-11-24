@@ -1,3 +1,10 @@
+// Promovarea de pe prima pagină. Schimbă projectId pentru a alege alt proiect din catalog.
+const promotion = {
+  enabled: true,                  // false dezactivează promovarea.
+  projectId: 'zecimi-si-daruri',
+  endsAt: null                    // Opțional, dată ISO cu fus orar: '2027-01-15T20:00:00+02:00'.
+};
+
 const categories = [
   { id: 'all', name: 'Toate', icon: 'grid' },
   { id: 'daruri', name: 'Dăruire', icon: 'heart' },
@@ -16,6 +23,7 @@ const sperantaStores = {
 const projects = [
   {
     id: 'zecimi-si-daruri', title: 'Zecimi și Daruri', categories: ['daruri'], cover: 'daruri', preview: 'daruri-site', previewAlt: 'Prezentarea oficială Zecimi și Daruri', domain: 'zecimisidaruri.ro',
+    mobilePreview: 'daruri-acasa',
     summary: 'Oferă online zecimea și darurile pentru biserica ta sau pentru un proiect pe care îl susții.',
     detail: "Prin Zecimi și Daruri poți susține biserica locală sau un proiect adventist. Alegi destinația contribuției și suma pe care dorești să o oferi.",
     guideTitle: "Cum oferi un dar",
@@ -29,6 +37,7 @@ const projects = [
   },
   {
     id: 'mybible', title: 'myBible', categories: ['studiu'], cover: 'studiu', preview: 'bible-site', previewAlt: 'Pagina de lectură biblică din myBible', domain: 'mybible.eu',
+    mobilePreview: 'bible-mobile',
     summary: 'Citește Biblia în mai multe traduceri și urmează un plan de studiu în ritmul tău.',
     detail: "Pe myBible poți citi același pasaj în traduceri diferite sau poți urma un plan de lectură. Platforma reunește textul biblic, devoționale și studii pentru Școala de Sabat.",
     guideTitle: "Cum studiezi un pasaj",

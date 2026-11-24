@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="style.css">
   <script src="catalog.js" defer></script>
   <script src="site-ui.js" defer></script>
+  <script src="promotion.js" defer></script>
   <script src="platform-menu.js" defer></script>
   <script src="app.js" defer></script>
 </head>
@@ -54,6 +55,25 @@
         </div>
       </div>
     </header>
+    <template id="promotion-template">
+      <section class="promoted-project" aria-labelledby="promoted-title">
+        <div class="promoted-copy">
+          <p class="promoted-kicker">În prim-plan</p>
+          <h1 id="promoted-title"></h1>
+          <p class="promoted-description"></p>
+          <div class="promoted-actions">
+            <a class="promoted-link">Descoperă proiectul</a>
+            <a class="promoted-catalog" href="#catalog">Explorează catalogul</a>
+          </div>
+        </div>
+        <figure class="promoted-art">
+          <div class="promoted-browser">
+            <div class="promoted-toolbar" aria-hidden="true"><span class="promoted-dots"><i></i><i></i><i></i></span><span class="promoted-domain"></span></div>
+            <img class="promoted-preview" fetchpriority="high" alt="">
+          </div>
+        </figure>
+      </section>
+    </template>
     <section class="wrap" id="catalog" aria-labelledby="catalog-title">
       <div class="catalog-heading">
         <div class="title-cluster"><h2 id="catalog-title" tabindex="-1">Explorează proiectele</h2><span id="total">6</span></div>

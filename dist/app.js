@@ -145,7 +145,7 @@ window.addEventListener('pageshow', () => {
 });
 // Preserve the visitor's result set when they return from a project page.
 document.addEventListener('click', event => {
-  if (event.target.closest('.card-open, .app-tile')) {
+  if (event.target.closest('.card-open, .app-tile, .promoted-link')) {
     history.replaceState({
       ...history.state,
       catalogFilters: { category: selected, platform: platform.value, search: search.value }
