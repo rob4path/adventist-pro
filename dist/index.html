@@ -56,23 +56,15 @@
       </div>
     </header>
     <template id="promotion-template">
-      <section class="promoted-project" aria-labelledby="promoted-title">
-        <div class="promoted-copy">
-          <p class="promoted-kicker">În prim-plan</p>
-          <h1 id="promoted-title"></h1>
-          <p class="promoted-description"></p>
-          <div class="promoted-actions">
-            <a class="promoted-link">Descoperă proiectul</a>
-            <a class="promoted-catalog" href="#catalog">Explorează catalogul</a>
-          </div>
+      <article class="wrap featured-card" aria-labelledby="promoted-title">
+        <div class="featured-content">
+          <p class="featured-kicker">În prim-plan</p>
+          <h2 id="promoted-title"></h2>
+          <p class="featured-description"></p>
+          <a class="promoted-link">Descoperă proiectul</a>
         </div>
-        <figure class="promoted-art">
-          <div class="promoted-browser">
-            <div class="promoted-toolbar" aria-hidden="true"><span class="promoted-dots"><i></i><i></i><i></i></span><span class="promoted-domain"></span></div>
-            <img class="promoted-preview" fetchpriority="high" alt="">
-          </div>
-        </figure>
-      </section>
+        <figure class="featured-preview"><img alt=""></figure>
+      </article>
     </template>
     <section class="wrap" id="catalog" aria-labelledby="catalog-title">
       <div class="catalog-heading">
