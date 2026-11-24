@@ -161,6 +161,11 @@ categoriesBar.addEventListener('click', event => {
   const button = event.target.closest('[data-category]');
   if (button) { selected = button.dataset.category; render(); }
 });
+categoriesBar.addEventListener('focusin', event => {
+  if (categoriesBar.scrollWidth > categoriesBar.clientWidth && event.target.matches('.category-btn:focus-visible')) {
+    event.target.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }
+});
 platform.addEventListener('change', render);
 get('reset').addEventListener('click', () => { clearSelection(); scrollToCatalog(); });
 savedNav.addEventListener('click', () => {
