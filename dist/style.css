@@ -245,6 +245,7 @@ kbd{font:normal .83rem var(--sans);height:1.48rem;width:1.43rem;display:grid;pla
 .catalog-tools { display: flex; align-items: stretch; gap: .55rem; }
 .catalog-tools .saved-nav, .catalog-tools .platform-control { min-height: 2.55rem; border-radius: .63rem; }
 .title-cluster{gap:.65rem}
+#total:empty { display: none; }
 h2{font-size:clamp(1.45rem,2.15vw,2.18rem);font-weight:670;letter-spacing:-.055em;line-height:1.2}
 h2:focus{outline:0}
 #total{display:grid;place-items:center;min-width:1.62rem;height:1.53rem;font-size:.83rem;border-radius:.44rem;background:var(--accent-soft);color:var(--primary);font-weight:650}
@@ -343,7 +344,7 @@ h2:focus{outline:0}
 .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.85rem 1.25rem}
 .card{position:relative;display:flex;flex-direction:column;overflow:hidden;min-width:0;border-radius:1rem;background:var(--surface);border:1px solid var(--line);box-shadow:0 2px 5px #23203604;transition:box-shadow .16s,border-color .16s,translate .16s}
 .card:hover,.card:focus-within{border-color:var(--accent-line);box-shadow:0 5px 16px #2820440d}
-.card-cover{aspect-ratio:2.18;position:relative;isolation:isolate;overflow:hidden;border-bottom:1px solid #00000005;container-type:inline-size}
+.card-cover{aspect-ratio:2.18;position:relative;isolation:isolate;overflow:hidden;border-bottom:1px solid #00000005;container-type:inline-size;background:linear-gradient(125deg,#c4e2dd,#e1efed)}
 .card-cover img{display:block;position:absolute}
 .cover-daruri{background:radial-gradient(ellipse at 75% 0%,#dfebff,transparent 73%),linear-gradient(125deg,#a3bff2,#b8d2ed 65%,#adc8e1)}
 .cover-daruri::before,.cover-studiu::before{content:"";position:absolute;inset:-20%;background:repeating-radial-gradient(ellipse at 70% 170%,transparent 0 32px,#f9faff55 33px,transparent 34px 65px);transform:rotate(-13deg)}
@@ -366,6 +367,10 @@ h2:focus{outline:0}
 .book-2{left:61%;transform:rotate(10deg)}
 .cover-imnuri{background:linear-gradient(115deg,#bdd6cd,#dfebe2)}
 .cover-tv{background:linear-gradient(115deg,#afc2ec,#dbe8f7)}
+.cover-misiune { background: linear-gradient(120deg,#d1c4e5,#ece5f3); }
+.cover-comunicare { background: linear-gradient(120deg,#b8cbdc,#e3ecf2); }
+.cover-educatie { background: linear-gradient(120deg,#d0cee3,#e9e9f1); }
+.cover-revista { background: linear-gradient(120deg,#decebd,#f3eae0); }
 .browser-preview{width:83%;position:absolute;left:10%;top:13%;border:1px solid #ffffffcc;overflow:hidden;border-radius:.45rem;background:white;box-shadow:0 5px 18px #29254836;transform:perspective(660px) rotateY(-10deg) rotateZ(-4deg)}
 .browser-chrome{height:1rem;display:flex;align-items:center;gap:3px;padding:0 .45rem;background:#fafbfd;border-bottom:1px solid #eee}
 .browser-chrome i{width:4px;height:4px;border-radius:50%;background:#ccccd5}
@@ -388,7 +393,34 @@ h2:focus{outline:0}
 .card:has(.card-open:focus-visible){outline:3px solid var(--focus);outline-offset:2px}
 .card-body p{color:var(--copy);font-size:1rem;line-height:1.6;margin:0 0 .95rem}
 .platform-list{gap:.75rem;flex-wrap:wrap}
-.card-body .platform-list{margin-top:auto;border-top:1px solid var(--line);padding-top:.78rem}
+.card-meta {
+  --social-target: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .35rem .55rem;
+  margin-top: auto;
+  padding-top: .6rem;
+  border-top: 1px solid var(--line);
+  min-height: calc(var(--social-target) + .6rem + 1px);
+}
+.card-social { display: flex; gap: .15rem; }
+.card-social:empty { display: none; }
+.card-social-link {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: var(--social-target);
+  height: var(--social-target);
+  border-radius: .45rem;
+  color: var(--muted);
+}
+.card-social-link:hover, .card-social-link:focus-visible { background: var(--accent-soft); color: var(--primary); }
+@media (pointer: coarse) {
+  .card-meta { --social-target: 2.75rem; }
+}
 .platform-item{font-size:.76rem;gap:.28rem;font-weight:560;color:var(--muted)}
 .platform-item .icon{width:.85rem;height:.85rem}
 .empty{text-align:center;padding:3.3rem 1rem;border:1px dashed var(--control-line);border-radius:.9rem;background:var(--surface)}

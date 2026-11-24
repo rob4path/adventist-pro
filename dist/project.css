@@ -38,6 +38,7 @@
 .project-info { display: grid; grid-template-columns: 1.55fr 1fr; align-items: start; gap: 1.3rem; margin-top: clamp(1.5rem, 3vw, 2.5rem); }
 .project-guide,.links-panel { border-radius: 1rem; border: 1px solid var(--line); background: var(--surface); padding: clamp(1.35rem, 2.3vw, 2.15rem); }
 .project-info h2 { font-size: clamp(1.25rem, 2vw, 1.65rem); line-height: 1.24; }
+.project-guide:only-child { grid-column: 1 / -1; }
 .steps { counter-reset: guide; list-style: none; margin: 1.3rem 0 0; padding: 0; }
 .steps li { counter-increment: guide; display: grid; grid-template-columns: 2rem 1fr; gap: .75rem; padding: 1rem 0; border-top: 1px solid var(--line); }
 .steps li:first-child { border: 0; padding-top: 0; }

@@ -1,4 +1,7 @@
 const paths = {
+  facebook: '<path fill="currentColor" stroke="none" d="M14.3 22v-8.8h3l.5-3.5h-3.5V7.5c0-1 .3-1.7 1.8-1.7H18V2.6a22 22 0 0 0-2.8-.2c-2.8 0-4.7 1.7-4.7 4.8v2.5H7.4v3.5h3.1V22z"/>',
+  instagram: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.5" r="1.1" fill="currentColor" stroke="none"/>',
+  youtube: '<path d="M21.3 7.4a2.5 2.5 0 0 0-1.8-1.8C17.9 5.1 14.9 5 12 5s-5.9.1-7.5.6a2.5 2.5 0 0 0-1.8 1.8C2.2 8.9 2.2 10.7 2.2 12s0 3.1.5 4.6a2.5 2.5 0 0 0 1.8 1.8c1.6.5 4.6.6 7.5.6s5.9-.1 7.5-.6a2.5 2.5 0 0 0 1.8-1.8c.5-1.5.5-3.3.5-4.6s0-3.1-.5-4.6Z"/><path fill="currentColor" stroke="none" d="M10 8.7v6.6l5.6-3.3z"/>',
   sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
   moon: '<path d="M20.8 14A8.8 8.8 0 0 1 10 3.2 9 9 0 1 0 20.8 14Z"/>',
   link: '<path d="m10.5 13.5 3-3M8.7 15.3l-1 1a3.6 3.6 0 0 1-5.1-5.1l4-4a3.6 3.6 0 0 1 5.1 0m.6 9.6a3.6 3.6 0 0 0 5.1 0l4-4a3.6 3.6 0 0 0-5.1-5.1l-1 1"/>',
@@ -49,7 +52,7 @@ function notify(message) {
 }
 
 document.querySelectorAll('.about').forEach(button => button.addEventListener('click', () => {
-  get('dialog-content').innerHTML = '<div class="dialog-body about-body"><img class="about-mark" src="assets/semn.svg" alt=""><h2 id="dialog-title" class="dialog-title">Despre adventist.pro</h2><p>O carte pentru acasă, un imn pentru Sabat sau o aplicație pentru daruri. Aici poți descoperi proiectele digitale ale comunității adventiste din România și poți ajunge direct la cei care le dezvoltă.</p><p>Această machetă prezintă șase exemple. Proiectele pe care le salvezi rămân în acest browser.</p></div>';
+  get('dialog-content').innerHTML = '<div class="dialog-body about-body"><img class="about-mark" src="assets/semn.svg" alt=""><h2 id="dialog-title" class="dialog-title">Despre adventist.pro</h2><p>O carte pentru acasă, un imn pentru Sabat sau o aplicație pentru daruri. Aici poți descoperi proiectele digitale ale comunității adventiste din România și poți ajunge direct la cei care le dezvoltă.</p><p>Proiectele pe care le salvezi rămân în acest browser.</p></div>';
   dialog.showModal();
   get('close-dialog').focus({ preventScroll: true });
 }));

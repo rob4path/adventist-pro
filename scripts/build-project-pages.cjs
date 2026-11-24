@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { projects, categories } = require('../dist/catalog.js');
+const { projects, categories, socialNetworkNames } = require('../dist/catalog.js');
 
 const dist = path.resolve(__dirname, '../dist');
 const home = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
@@ -22,7 +22,7 @@ function html(value) {
 function linkRow(url, label, icon, description) {
   return `<a class="resource-link" href="${html(url)}" target="_blank" rel="noopener noreferrer">
     <span class="resource-icon" data-icon="${icon}"></span>
-    <span><strong>${html(label)}</strong><small>${html(description)}</small></span>
+    <span><strong>${html(label)}</strong>${description ? '<small>' + html(description) + '</small>' : ''}</span>
   </a>`;
 }
 
@@ -34,10 +34,16 @@ function linksPanel(project) {
   const stores = Object.entries(project.stores || {}).map(([name, url]) =>
     linkRow(url, name === 'Android' ? 'Google Play' : 'App Store', platformIcons[name], appName + ' · ' + name)
   ).join('');
-  return `<aside class="links-panel" aria-label="Resurse oficiale">
-    ${resources ? '<section><h2>Linkuri utile</h2>' + resources + '</section>' : ''}
-    ${stores ? '<section><h2>Aplicația mobilă</h2>' + stores + '</section>' : ''}
-  </aside>`;
+  const social = Object.entries(project.social || {}).map(([network, url]) =>
+    linkRow(url, socialNetworkNames[network], network)
+  ).join('');
+  const sections = [
+    ['Linkuri utile', resources],
+    ['Aplicația mobilă', stores],
+    ['Rețele sociale', social]
+  ].filter(([, rows]) => rows)
+    .map(([heading, rows]) => '<section><h2>' + heading + '</h2>' + rows + '</section>');
+  return sections.length ? '<aside class="links-panel" aria-label="Resurse oficiale">' + sections.join('\n') + '</aside>' : '';
 }
 
 function projectPage(project) {
@@ -90,8 +96,8 @@ function projectPage(project) {
             <p class="intro-text">${html(project.detail)}</p>
             <div class="platform-list" aria-label="Platforme disponibile">${platforms}</div>
             <div class="project-actions">
-              <a class="dark-button" href="${html(project.url)}" target="_blank" rel="noopener noreferrer"><span data-icon="globe"></span>Deschide site-ul</a>
-              <button class="copy-link" type="button" id="copy-link" hidden><span data-icon="link"></span>Copiază linkul</button>
+              <a class="dark-button" href="${html(project.url)}" target="_blank" rel="noopener noreferrer"><span data-icon="globe"></span>Website</a>
+              <button class="copy-link" type="button" id="copy-link" hidden><span data-icon="link"></span>Copiază link</button>
             </div>
             <label class="share-fallback" hidden>Adresa paginii<input type="url" readonly></label>
           </div>

@@ -26,6 +26,13 @@ function platformList(project) {
   ).join('') + '</div>';
 }
 
+function socialLinks(project) {
+  return Object.entries(project.social || {}).map(([network, url]) => {
+    const label = project.title + ' · ' + socialNetworkNames[network];
+    return `<a class="card-social-link" href="${url}" target="_blank" rel="noopener noreferrer" aria-label="${label}" title="${label}">${icon(network)}</a>`;
+  }).join('');
+}
+
 function categoryTag(project) {
   const item = category(project.categories[0]);
   return '<span class="category-tag tag-' + item.id + '">' + icon(item.icon) + item.name + '</span>';
@@ -73,7 +80,8 @@ function card(project) {
         <button type="button" class="round-button save-card" data-save="${project.id}" aria-pressed="${isSaved}" aria-label="${isSaved ? 'Elimină din proiectele salvate' : 'Salvează proiectul'} · ${project.title}">${icon('bookmark')}</button>
       </div>
       <h3 class="card-title"><a class="card-open" href="proiecte/${project.id}/">${project.title}</a></h3>
-      <p>${project.summary}</p>${platformList(project)}
+      <p>${project.summary}</p>
+      <div class="card-meta">${platformList(project)}<div class="card-social">${socialLinks(project)}</div></div>
     </div>
   </article>`;
 }
