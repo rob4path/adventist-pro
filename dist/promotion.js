@@ -8,10 +8,31 @@
   const feature = template.content.firstElementChild.cloneNode(true);
   feature.querySelector('h2').textContent = project.title;
   feature.querySelector('.featured-description').textContent = project.summary;
-  feature.querySelector('.promoted-link').href = 'proiecte/' + encodeURIComponent(project.id) + '/';
-  const preview = feature.querySelector('.featured-preview img');
-  preview.src = 'assets/projects/' + project.preview + '.webp';
-  preview.alt = project.previewAlt;
+  const link = feature.querySelector('.promoted-link');
+  link.href = 'proiecte/' + encodeURIComponent(project.id) + '/';
+  if (project.platforms.includes('Android') || project.platforms.includes('iOS')) {
+    feature.querySelector('.featured-kicker').textContent = promotion.appLabel || 'Aplicație recomandată';
+    link.textContent = 'Descoperă aplicația';
+  }
+
+  const figure = feature.querySelector('.featured-preview');
+  const screens = (project.mobileScreenshots || []).slice(0, 2);
+  if (screens.length) {
+    feature.classList.add('featured-app');
+    figure.classList.toggle('has-secondary', screens.length > 1);
+    screens.forEach((screen, index) => {
+      const image = new Image(screen.width, screen.height);
+      image.className = index === 0 ? 'featured-phone' : 'featured-phone-secondary';
+      image.alt = index === 0 ? screen.alt : '';
+      image.src = 'assets/projects/' + screen.file;
+      figure.append(image);
+    });
+  } else {
+    const image = new Image();
+    image.alt = project.previewAlt;
+    image.src = 'assets/projects/' + project.preview + '.webp';
+    figure.append(image);
+  }
   template.replaceWith(feature);
 
   if (!Number.isFinite(deadline)) return;

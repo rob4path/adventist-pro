@@ -158,88 +158,121 @@ kbd{font:normal .83rem var(--sans);height:1.48rem;width:1.43rem;display:grid;pla
 #catalog{padding:2.05rem 0 3rem;scroll-margin-top:1.1rem}
 .featured-card {
   display: grid;
-  grid-template-columns: minmax(0, 1.65fr) minmax(13rem, 1fr);
+  grid-template-columns: minmax(0, 1.2fr) minmax(15.5rem, 1fr);
   overflow: hidden;
   margin-top: clamp(1rem, 2vw, 1.7rem);
   border: 1px solid var(--line);
-  border-radius: 1rem;
+  border-radius: 1.1rem;
   background: var(--surface);
   color: var(--ink);
 }
 .featured-content {
   align-self: center;
   min-width: 0;
-  padding: 1.1rem clamp(1.2rem, 2.4vw, 2rem) .8rem;
+  padding: clamp(1.2rem, 2.8vw, 2.55rem);
 }
 .featured-kicker {
-  display: flex;
-  align-items: center;
-  gap: .45rem;
-  margin-bottom: .28rem;
+  margin-bottom: .58rem;
   color: var(--primary);
-  font-size: .67rem;
-  font-weight: 720;
-  letter-spacing: .12em;
+  font-size: .74rem;
+  font-weight: 710;
+  line-height: 1.4;
+  letter-spacing: .075em;
   text-transform: uppercase;
 }
-.featured-kicker::before { content: ""; inline-size: 1.1rem; block-size: 2px; background: currentColor; }
-.featured-content h2 { font-size: clamp(1.4rem, 2.05vw, 1.85rem); line-height: 1.16; overflow-wrap: anywhere; }
+.featured-content h2 { font-size: clamp(1.55rem, 2.6vw, 2.45rem); line-height: 1.12; overflow-wrap: anywhere; }
 .featured-description {
-  max-width: 62ch;
-  margin-top: .37rem;
+  max-width: 48ch;
+  margin-top: .58rem;
   color: var(--copy);
-  font-size: .95rem;
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: 1.52;
 }
 .featured-card .promoted-link {
   display: inline-flex;
   align-items: center;
-  min-height: 2.5rem;
-  margin-top: .15rem;
-  padding: 0;
-  border-radius: .25rem;
-  background: transparent;
-  color: var(--primary);
-  font-size: .89rem;
-  font-weight: 660;
-  text-decoration: underline;
-  text-underline-offset: .2em;
+  justify-content: center;
+  min-height: 2.75rem;
+  max-width: 100%;
+  margin-top: 1rem;
+  padding: .58rem 1rem;
+  border-radius: .62rem;
+  background: var(--action);
+  color: var(--action-ink);
+  font-size: .9rem;
+  font-weight: 670;
+  line-height: 1.35;
+  text-align: center;
 }
-.featured-card .promoted-link:hover { color: var(--ink); }
+.featured-card .promoted-link:hover { background: var(--action-hover); }
+.featured-card .promoted-link:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 .featured-preview {
   display: grid;
   place-items: center;
   min-width: 0;
   margin: 0;
-  padding: .8rem 1rem;
+  padding: 1rem;
   border-inline-start: 1px solid var(--line);
-  background: linear-gradient(112deg, var(--hover), var(--accent-soft));
+  background: radial-gradient(ellipse at 50% 65%, var(--accent-line) 0%, var(--accent-soft) 65%, var(--hover) 100%);
 }
 .featured-preview img {
   display: block;
   max-width: 100%;
-  max-height: 9.5rem;
+  max-height: 11rem;
   width: auto;
   height: auto;
   border: 1px solid var(--control-line);
   border-radius: .48rem;
   box-shadow: 0 .25rem .9rem #071a201f;
 }
+.featured-app .featured-preview {
+  --phone-width: clamp(7.95rem, 11vw, 9.55rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+  padding: 1.3rem .55rem;
+}
+.featured-app .featured-preview img {
+  flex: none;
+  width: var(--phone-width);
+  height: auto;
+  max-width: none;
+  max-height: none;
+  border: 0;
+  border-radius: 13% / 6.4%;
+  box-shadow: 0 0 0 2px #20303a, 0 0 0 3px #96b4b566, 0 .6rem 1.3rem #07191f45;
+}
+.featured-phone { position: relative; z-index: 1; }
+.featured-app .featured-preview .featured-phone-secondary {
+  width: calc(var(--phone-width) * .83);
+  margin-inline-start: -.5rem;
+  transform: translateY(.3rem) rotate(3deg);
+}
 @media (max-width: 600px) {
-  .featured-card {
+  .featured-card { border-radius: .88rem; }
+  .featured-card:not(.featured-app) {
     grid-template-columns: minmax(0, 1fr) clamp(6rem, 29vw, 9rem);
     grid-template-areas: "kicker preview" "title preview" "description description" "link link";
     column-gap: .75rem;
-    padding: .88rem .95rem .48rem;
-    border-radius: .82rem;
+    padding: .88rem .95rem;
   }
-  .featured-content { display: contents; }
-  .featured-kicker { grid-area: kicker; align-self: end; margin-bottom: .18rem; font-size: .62rem; }
-  .featured-content h2 { grid-area: title; font-size: clamp(1.14rem, 4.8vw, 1.45rem); }
-  .featured-description { grid-area: description; margin-top: .55rem; font-size: .89rem; }
-  .featured-card .promoted-link { grid-area: link; justify-self: start; min-height: 2.75rem; margin: 0; }
-  .featured-preview { grid-area: preview; align-self: center; justify-items: end; padding: 0; border: 0; background: transparent; }
-  .featured-preview img { max-height: 4.5rem; border-radius: .38rem; box-shadow: none; }
+  .featured-card:not(.featured-app) .featured-content { display: contents; }
+  .featured-kicker { grid-area: kicker; align-self: end; margin-bottom: .35rem; font-size: .65rem; }
+  .featured-content h2 { grid-area: title; font-size: clamp(1.25rem, 4.8vw, 1.65rem); }
+  .featured-description { grid-area: description; margin-top: .45rem; font-size: .9rem; }
+  .featured-card .promoted-link { grid-area: link; justify-self: start; margin-top: .7rem; font-size: .85rem; padding-inline: .75rem; }
+  .featured-card:not(.featured-app) .featured-preview { grid-area: preview; align-self: center; justify-items: end; padding: 0; border: 0; background: transparent; }
+  .featured-card:not(.featured-app) .featured-preview img { max-height: 4.5rem; border-radius: .38rem; box-shadow: none; }
+  .featured-app { grid-template-columns: minmax(0, 1fr) minmax(7.6rem, 39%); }
+  .featured-app .featured-content { padding: 1.05rem clamp(.75rem, 3vw, 1.2rem); }
+  .featured-app .featured-preview { --phone-width: clamp(6.8rem, 31vw, 8.15rem); padding: .8rem .3rem; }
+  .featured-app .featured-phone-secondary { display: none; }
+}
+@media (max-width: 359px) {
+  .featured-app .featured-kicker { font-size: .63rem; letter-spacing: .045em; }
+  .featured-app .featured-description { font-size: .85rem; line-height: 1.45; }
+  .featured-app .promoted-link { padding-inline: .37rem; font-size: .79rem; }
 }
 .catalog-heading{justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .catalog-tools { display: flex; align-items: stretch; gap: .55rem; }

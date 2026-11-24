@@ -2,6 +2,7 @@
 const promotion = {
   enabled: true,                  // false dezactivează promovarea.
   projectId: 'zecimi-si-daruri',
+  appLabel: 'Cea mai recentă aplicație', // Eticheta editorială pentru aplicația selectată.
   endsAt: null                    // Opțional, dată ISO cu fus orar: '2027-01-15T20:00:00+02:00'.
 };
 
