@@ -11,6 +11,7 @@ const paths = {
   radio: '<rect x="2.5" y="9" width="19" height="12" rx="2"/><path d="m5 8 13-6M6 13h5m-5 3h4"/><circle cx="16.5" cy="15.5" r="2.5"/>',
   sliders: '<path d="M3 6.5h5m4 0h9M3 17.5h10m4 0h4"/><circle cx="10" cy="6.5" r="2"/><circle cx="15" cy="17.5" r="2"/>',
   chevron: '<path d="m6 9 6 6 6-6"/>',
+  check: '<path d="m5 12 4.5 4.5L19 7"/>',
   x: '<path d="m6 6 12 12M18 6 6 18"/>',
   search: '<circle cx="10.2" cy="10.2" r="6.6"/><path d="m15.2 15.2 5.4 5.4"/>',
   bookmark: '<path d="M6 4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21l-6-4-6 4V4.5Z"/>',

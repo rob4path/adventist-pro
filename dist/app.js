@@ -9,6 +9,7 @@ if (previousFilters) {
   search.value = previousFilters.search;
   platform.value = previousFilters.platform;
 }
+const syncPlatformMenu = setupPlatformMenu(platform);
 let savedOnly = new URLSearchParams(location.search).get('salvate') === '1';
 let saved = readSavedProjects();
 
@@ -105,6 +106,7 @@ function render() {
 function resetFilters() {
   selected = 'all';
   platform.value = '';
+  syncPlatformMenu();
   search.value = '';
 }
 function scrollToCatalog() {

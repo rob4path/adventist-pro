@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="style.css">
   <script src="catalog.js" defer></script>
   <script src="site-ui.js" defer></script>
+  <script src="platform-menu.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -64,10 +65,14 @@
         <div class="catalog-tools">
           <button id="saved-nav" class="saved-nav" aria-pressed="false" type="button"><span data-icon="bookmark"></span><span>Salvate</span><span id="saved-num" hidden></span></button>
           <div class="platform-control">
-            <span data-icon="sliders"></span>
             <label class="sr-only" for="platform">Filtrează după platformă</label>
             <select id="platform"><option value="">Toate platformele</option><option value="Web">Web</option><option value="Android">Android</option><option value="iOS">iOS</option></select>
-            <span data-icon="chevron"></span>
+            <button class="platform-trigger" id="platform-trigger" type="button" aria-haspopup="menu" aria-controls="platform-menu" aria-expanded="false" hidden>
+              <span class="platform-symbol" data-icon="sliders"></span>
+              <span id="platform-label">Toate platformele</span>
+              <span class="platform-chevron" data-icon="chevron"></span>
+            </button>
+            <div class="platform-menu" id="platform-menu" role="menu" aria-label="Filtrează după platformă" hidden></div>
           </div>
         </div>
       </div>
