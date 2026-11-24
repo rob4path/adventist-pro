@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#244a3a">
+  <meta name="theme-color" content="#f8f9fc">
   <meta name="description" content="Descoperă aplicații, site-uri și resurse adventiste în limba română. Explorează catalogul după domeniu sau platformă.">
   <title>adventist.pro — Catalog de proiecte adventiste</title>
   <link rel="icon" href="assets/semn.svg" type="image/svg+xml">
-  <link rel="preload" as="font" href="assets/baskervville.ttf" type="font/ttf" crossorigin>
+  <link rel="preload" as="font" href="assets/dm-sans-latin.woff2" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
   <script src="catalog.js" defer></script>
   <script src="app.js" defer></script>
@@ -18,7 +18,7 @@
     <div class="wrap masthead-inner">
       <a class="brand home" href="#acasa" aria-label="adventist.pro, pagina principală"><img src="assets/semn.svg" width="35" height="35" alt=""><span>adventist<span class="brand-suffix">.pro</span></span></a>
       <nav aria-label="Navigare principală">
-        <a class="nav-link nav-catalog" href="#catalog" aria-current="page">Catalog</a>
+        <a class="nav-link nav-catalog" href="#catalog" aria-current="page">Explorează</a>
         <button class="nav-link about" type="button">Despre proiect</button>
       </nav>
       <button id="saved-nav" class="saved-nav" aria-pressed="false" type="button"><span data-icon="bookmark"></span><span>Salvate</span><span id="saved-num" hidden></span></button>
@@ -27,22 +27,30 @@
   <main id="acasa" class="wrap">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="eyebrow-line"></span>Descoperă adventist.pro</div>
-        <h1 id="hero-title">Proiecte adventiste,<br><em>într-un singur loc.</em></h1>
-        <p>Aplicații, site-uri și resurse digitale pentru viața de credință<br class="desktop-break"> și comunitatea ta.</p>
+        <div class="eyebrow"><span data-icon="grid"></span>Catalog digital</div>
+        <h1 id="hero-title">Proiecte adventiste,<br><span>într-un singur loc.</span></h1>
+        <p>Descoperă aplicații și site-uri pentru studiu, închinare<br class="desktop-break"> și viața comunității adventiste din România.</p>
         <form id="search-form" class="search" role="search">
           <span data-icon="search"></span>
           <label class="sr-only" for="search-input">Caută în catalog</label>
-          <input type="search" id="search-input" placeholder="Caută un proiect, o aplicație…" autocomplete="off" enterkeyhint="search">
+          <input type="search" id="search-input" placeholder="Caută o aplicație, un site sau o resursă…" autocomplete="off" enterkeyhint="search">
           <kbd id="shortcut" aria-hidden="true">/</kbd>
           <button id="clear-search" hidden type="button" aria-label="Șterge căutarea"><span data-icon="x"></span></button>
         </form>
       </div>
-      <div class="hero-image"><img src="assets/coperta.webp" alt="" width="1200" height="800" fetchpriority="high"></div>
+      <div class="hero-art" aria-label="Proiecte din catalog">
+        <div class="star-field" aria-hidden="true"></div>
+        <div class="orbits" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="tile-space">
+          <button class="app-tile tile-bible" data-feature="mybible" type="button" aria-label="Detalii despre myBible"><img alt="" src="assets/projects/bible-logo.svg"></button>
+          <button class="app-tile tile-gift" data-feature="zecimi-si-daruri" type="button" aria-label="Detalii despre Zecimi și Daruri"><img alt="" src="assets/projects/daruri-logo.svg"></button>
+          <button class="app-tile tile-radio" data-feature="radio-vocea-sperantei" type="button" aria-label="Detalii despre Radio Vocea Speranței"><span class="radio-symbol"><img alt="" src="assets/projects/rvs-logo.webp"></span></button>
+        </div>
+      </div>
     </section>
     <section id="catalog" aria-labelledby="catalog-title">
       <div class="catalog-heading">
-        <div class="title-cluster"><h2 id="catalog-title" tabindex="-1">Catalog de proiecte</h2><span id="total">6</span></div>
+        <div class="title-cluster"><h2 id="catalog-title" tabindex="-1">Explorează proiectele</h2><span id="total">6</span></div>
         <div class="platform-control">
           <span data-icon="sliders"></span>
           <label class="sr-only" for="platform">Filtrează după platformă</label>

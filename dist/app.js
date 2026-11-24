@@ -15,7 +15,6 @@ const paths = {
   android: '<path d="M4 15.5a8 8 0 0 1 16 0H4ZM7 7 5 4m12 3 2-3"/><path d="M8.5 12.5h.3m6.4 0h.3" stroke-width="2"/>',
   apple: '<path fill="currentColor" stroke="none" d="M15.8 1.5c.2 1.4-.4 2.8-1.2 3.7-.9 1.1-2.2 1.8-3.6 1.7-.2-1.2.5-2.8 1.3-3.7.9-1 2.3-1.7 3.5-1.7Zm3.8 15.1c-.4 1.1-.8 2-1.5 3.1-.9 1.3-2.1 2.9-3.7 2.8-1.4 0-1.8-.9-3.6-.9-1.7 0-2.2.9-3.6.9-1.5.1-2.7-1.4-3.6-2.8-2.5-3.9-2.9-8.6-1.3-11C3.5 7 5.2 6 6.9 6c1.4 0 2.3.9 3.5.9 1.2 0 2-.9 3.8-1 1.5 0 3.1.8 4.2 2.2-3.6 2.1-3 6.7 1.2 8.5Z" transform="translate(1 0)"/>'
 };
-const accent = { daruri: '#316650', muzica: '#903f43', studiu: '#876025', carti: '#535684', servicii: '#546344', media: '#44627b' };
 const platformIcon = { Web: 'globe', Android: 'android', iOS: 'apple' };
 const icon = name => '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + paths[name] + '</svg>';
 document.querySelectorAll('[data-icon]').forEach(slot => { slot.innerHTML = icon(slot.dataset.icon); });
@@ -52,15 +51,50 @@ function platformList(project) {
 
 function categoryTag(project) {
   const item = category(project.categories[0]);
-  return '<span class="category-tag" style="--accent:' + accent[item.id] + '">' + icon(item.icon) + item.name + '</span>';
+  return '<span class="category-tag tag-' + item.id + '">' + icon(item.icon) + item.name + '</span>';
+}
+
+function asset(file, className) {
+  return '<img class="' + className + '" src="assets/projects/' + file + '" alt="" loading="lazy" draggable="false">';
+}
+
+function browserPreview(project) {
+  return '<div class="browser-preview"><div class="browser-chrome"><i></i><i></i><i></i></div>' +
+    asset(project.preview + '.webp', 'site-image') + '</div>';
+}
+
+const signalBars = [12,21,32,19,35,57,40,24,45,70,48,32,67,83,60,46,73,92,65,47,66,78,58,41,65,81,97,74,56,68,80,66,48,66,85,58,40,52,34,19,30,48,31,16,28,42,23,13];
+const waveform = '<div class="waveform">' + signalBars.map(height => '<i style="height:' + height + '%"></i>').join('') + '</div>';
+
+function coverArt(project) {
+  let content;
+  switch (project.cover) {
+    case 'daruri':
+      content = asset('daruri-proiect.webp', 'gift-device gift-back') + asset('daruri-acasa.webp', 'gift-device gift-front');
+      break;
+    case 'studiu':
+      content = asset('bible-logo.svg', 'bible-mark') + asset('bible-mobile.webp', 'bible-phone');
+      break;
+    case 'muzica':
+      content = waveform + asset('rvs-logo.webp', 'station-logo');
+      break;
+    case 'carti':
+      content = '<div class="shelf">' + ['carte-1.webp','carte-2.webp','carte-3.webp'].map((file, i) => asset(file, 'book book-' + i)).join('') + '</div>';
+      break;
+    default:
+      content = browserPreview(project);
+  }
+  return '<div class="card-cover cover-' + project.cover + '" aria-hidden="true">' + content + '</div>';
 }
 
 function card(project) {
   const isSaved = saved.has(project.id);
   return `<article class="card">
-    <div class="card-cover"><img src="assets/${project.image}.webp" width="960" height="400" alt="" loading="lazy"></div>
-    <button type="button" class="round-button save-card" data-save="${project.id}" aria-pressed="${isSaved}" aria-label="${isSaved ? 'Elimină din proiectele salvate' : 'Salvează proiectul'} · ${project.title}">${icon('bookmark')}</button>
-    <div class="card-body">${categoryTag(project)}
+    ${coverArt(project)}
+    <div class="card-body">
+      <div class="card-top">${categoryTag(project)}
+        <button type="button" class="round-button save-card" data-save="${project.id}" aria-pressed="${isSaved}" aria-label="${isSaved ? 'Elimină din proiectele salvate' : 'Salvează proiectul'} · ${project.title}">${icon('bookmark')}</button>
+      </div>
       <h3 class="card-title"><button class="card-open" type="button" data-open="${project.id}">${project.title}</button></h3>
       <p>${project.summary}</p>${platformList(project)}
     </div>
@@ -78,7 +112,7 @@ function render() {
     words.every(word => index.get(project.id).includes(word))
   );
   cards.innerHTML = filtered.map(card).join('');
-  get('catalog-title').textContent = savedOnly ? 'Proiecte salvate' : 'Catalog de proiecte';
+  get('catalog-title').innerHTML = savedOnly ? 'Proiecte salvate' : '<span class="wide-title">Explorează proiectele</span><span class="compact-title">Proiecte</span>';
   get('total').textContent = String(filtered.length);
   get('result-status').textContent = filtered.length === 1 ? 'Un proiect afișat.' : filtered.length + ' proiecte afișate.';
   get('saved-num').textContent = String(saved.size);
@@ -128,11 +162,12 @@ function toggleSave(id) {
 }
 
 function showDetails(project) {
+  const wordmark = project.wordmark ? asset(project.wordmark, 'dialog-wordmark') : '';
   const stores = project.stores ? '<div class="store-links">' + Object.entries(project.stores).map(([name, url]) =>
     `<a href="${url}" target="_blank" rel="noopener noreferrer">${name === 'iOS' ? 'App Store' : 'Google Play'}</a>`
   ).join('') + '</div>' : '';
-  get('dialog-content').innerHTML = `<div class="dialog-cover"><img src="assets/${project.image}.webp" alt=""></div>
-    <div class="dialog-body">${categoryTag(project)}<h2 class="dialog-title" id="dialog-title">${project.title}</h2>
+  get('dialog-content').innerHTML = `<div class="dialog-cover"><img src="assets/projects/${project.preview}.webp" alt="${project.previewAlt}"></div>
+    <div class="dialog-body"><div class="dialog-type">${categoryTag(project)}${wordmark}</div><h2 class="dialog-title" id="dialog-title">${project.title}</h2>
       <p>${project.detail}</p>${platformList(project)}
       <div class="dialog-actions"><a class="dark-button" href="${project.url}" target="_blank" rel="noopener noreferrer">${icon('globe')} Deschide site-ul</a><span class="site-domain">${project.domain}</span></div>
       ${stores}
@@ -146,6 +181,10 @@ cards.addEventListener('click', event => {
   if (saveButton) return toggleSave(saveButton.dataset.save);
   const openButton = event.target.closest('[data-open]');
   if (openButton) showDetails(projects.find(project => project.id === openButton.dataset.open));
+});
+document.querySelector('.hero-art').addEventListener('click', event => {
+  const tile = event.target.closest('[data-feature]');
+  if (tile) showDetails(projects.find(project => project.id === tile.dataset.feature));
 });
 document.querySelectorAll('.about').forEach(button => button.addEventListener('click', () => {
   get('dialog-content').innerHTML = '<div class="dialog-body about-body"><img class="about-mark" src="assets/semn.svg" alt=""><h2 id="dialog-title" class="dialog-title">Despre adventist.pro</h2><p>O carte pentru acasă, un imn pentru Sabat sau o aplicație pentru daruri. Aici poți descoperi proiectele digitale ale comunității adventiste din România și poți ajunge direct la cei care le dezvoltă.</p><p>Această machetă prezintă șase exemple. Proiectele pe care le salvezi rămân în acest browser.</p></div>';
