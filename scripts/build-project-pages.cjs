@@ -52,26 +52,27 @@ function projectPreview(project) {
               <img src="assets/projects/${html(project.preview)}.webp" alt="${html(project.previewAlt)}" fetchpriority="high">
             </div>`;
   const screenshots = project.mobileScreenshots || [];
-  const first = screenshots[0];
   const classes = 'project-visual visual-' + html(project.cover);
-  if (!first) return `<figure class="${classes}">
+  if (!screenshots.length) return `<figure class="${classes}">
             ${frame}
           </figure>`;
 
-  const src = 'assets/projects/' + html(first.file);
-  const choices = screenshots.length > 1 ? `<div class="phone-choices" role="group" aria-label="Capturi din aplicație" hidden>
-              ${screenshots.map((shot, index) => `<button type="button" aria-pressed="${index === 0}" aria-controls="mobile-preview"
-                data-src="assets/projects/${html(shot.file)}" data-alt="${html(shot.alt)}" data-width="${shot.width}" data-height="${shot.height}">${html(shot.label)}</button>`).join('\n              ')}
-            </div>` : '';
-  return `<figure class="${classes} with-mobile">
-            <div class="device-previews">
-              ${frame}
-              <a class="phone-preview" id="mobile-preview" href="${src}" title="Deschide captura la dimensiune completă">
-                <span class="sr-only">Deschide captura la dimensiune completă. </span>
-                <img src="${src}" width="${first.width}" height="${first.height}" alt="${html(first.alt)}">
-              </a>
-            </div>${choices}
-          </figure>`;
+  const captures = screenshots.map(shot => {
+    const src = 'assets/projects/' + html(shot.file);
+    return `<figure class="phone-capture">
+                <a class="phone-preview" href="${src}">
+                  <span class="sr-only">Deschide captura la dimensiune completă. </span>
+                  <img src="${src}" width="${shot.width}" height="${shot.height}" alt="${html(shot.alt)}">
+                </a>
+                <figcaption>${html(shot.label)}</figcaption>
+              </figure>`;
+  }).join('\n              ');
+  return `<div class="${classes} with-mobile">
+            ${frame}
+            <div class="phone-gallery" role="group" aria-label="Capturi din aplicație">
+              ${captures}
+            </div>
+          </div>`;
 }
 
 function projectPage(project) {
