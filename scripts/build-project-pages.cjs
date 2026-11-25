@@ -1,9 +1,11 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { projects, categories, socialNetworkNames } = require('../dist/catalog.js');
+const { projects, categories, socialNetworkNames } = require('../src/content/catalog.js');
 
-const dist = path.resolve(__dirname, '../dist');
-const home = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
+const root = path.resolve(__dirname, '..');
+const source = path.join(root, 'src');
+const dist = path.join(root, 'dist');
+const home = fs.readFileSync(path.join(source, 'index.html'), 'utf8');
 const origin = 'https://adventist-pro.techandfriends.ro';
 
 // Reuse the catalog identity, footer and about dialog on each presentation page.
@@ -141,8 +143,34 @@ ${footer}</body>
 `;
 }
 
-for (const project of projects) {
-  const directory = path.join(dist, 'proiecte', project.id);
-  fs.mkdirSync(directory, { recursive: true });
-  fs.writeFileSync(path.join(directory, 'index.html'), projectPage(project));
+function build(output) {
+  fs.copyFileSync(path.join(source, 'index.html'), path.join(output, 'index.html'));
+  fs.cpSync(path.join(source, 'assets'), path.join(output, 'assets'), { recursive: true });
+  // Keep the existing public URLs as contributors organize source files by role.
+  fs.copyFileSync(path.join(source, 'content/catalog.js'), path.join(output, 'catalog.js'));
+  for (const folder of ['scripts', 'styles']) {
+    fs.cpSync(path.join(source, folder), output, { recursive: true });
+  }
+
+  const ids = new Set();
+  for (const project of projects) {
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(project.id) || ids.has(project.id)) {
+      throw new Error(`Invalid or duplicate project ID: ${project.id}`);
+    }
+    ids.add(project.id);
+    const directory = path.join(output, 'proiecte', project.id);
+    fs.mkdirSync(directory, { recursive: true });
+    fs.writeFileSync(path.join(directory, 'index.html'), projectPage(project));
+  }
 }
+
+// Render first so a catalog error leaves the last successful preview available.
+const staging = fs.mkdtempSync(path.join(root, '.build-'));
+try {
+  build(staging);
+  fs.rmSync(dist, { recursive: true, force: true });
+  fs.renameSync(staging, dist);
+} finally {
+  fs.rmSync(staging, { recursive: true, force: true });
+}
+console.log(`Built the catalog and ${projects.length} project pages in dist/.`);
