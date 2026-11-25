@@ -11,11 +11,11 @@ Ai nevoie de Git, Node.js 22 și Python 3. Generatorul folosește doar module in
 ```sh
 git clone https://github.com/rob4path/adventist-pro.git
 cd adventist-pro
-node scripts/build-project-pages.cjs
+node build.cjs
 python3 -m http.server 8000 --bind 127.0.0.1 --directory dist
 ```
 
-Deschide [catalogul local](http://127.0.0.1:8000/). După ce editezi sursele, rulează din nou `node scripts/build-project-pages.cjs` într-un al doilea terminal, din rădăcina proiectului, apoi reîncarcă pagina.
+Deschide [catalogul local](http://127.0.0.1:8000/). După ce editezi sursele, rulează din nou `node build.cjs` într-un al doilea terminal, din rădăcina proiectului, apoi reîncarcă pagina.
 
 ## Unde găsești fiecare lucru
 
@@ -25,9 +25,9 @@ Deschide [catalogul local](http://127.0.0.1:8000/). După ce editezi sursele, ru
 | [src/index.html](src/index.html) | Pagina principală, cele trei pictograme din antet și elementele comune preluate pe paginile proiectelor. |
 | [src/assets/](src/assets/) | Fonturi și identitate vizuală. Siglele și capturile proiectelor se află în [src/assets/projects/](src/assets/projects/). |
 | [src/scripts/](src/scripts/) · [src/styles/](src/styles/) | Interacțiunile din browser și stilurile catalogului. |
-| [scripts/build-project-pages.cjs](scripts/build-project-pages.cjs) | Copiază fișierele statice și generează câte o pagină de prezentare pentru fiecare proiect. |
+| [build.cjs](build.cjs) | Copiază fișierele statice și generează câte o pagină de prezentare pentru fiecare proiect. |
 | `dist/` | Site-ul generat pentru previzualizare și publicare. Git ignoră acest director. |
-| [wrangler.jsonc](wrangler.jsonc) · [.openai/hosting.json](.openai/hosting.json) | Configurația Cloudflare pentru domeniul public și configurația de găzduire pentru Sites. |
+| [wrangler.jsonc](wrangler.jsonc) | Configurația Cloudflare pentru generarea site-ului și publicarea pe domeniul public. |
 
 ## Adaugă sau actualizează un proiect
 

@@ -1,8 +1,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { projects, categories, socialNetworkNames } = require('../src/content/catalog.js');
+const { projects, categories, socialNetworkNames } = require('./src/content/catalog.js');
 
-const root = path.resolve(__dirname, '..');
+const root = __dirname;
 const source = path.join(root, 'src');
 const dist = path.join(root, 'dist');
 const home = fs.readFileSync(path.join(source, 'index.html'), 'utf8');
