@@ -147,12 +147,23 @@ kbd{font:normal .83rem var(--sans);height:1.48rem;width:1.43rem;display:grid;pla
 .orbits i:nth-child(2){inset:17% 12%;width:76%;height:65%;border-color:#b1e7e435}
 .orbits i:nth-child(3){inset:-8% -13%;width:126%;height:110%;border-color:#9acfc71a}
 .tile-space{position:absolute;inset:0 1% 0 -5%}
-.app-tile{position:absolute;aspect-ratio:1;border-radius:23%;background:var(--tile);display:grid;place-items:center;overflow:hidden;transform:rotateX(22deg) rotateZ(-15deg);box-shadow:0 1px 0 var(--edge),-1px 3px 0 var(--edge),-2px 5px 0 var(--edge),-3px 7px 0 var(--edge),-4px 9px 0 var(--edge),-10px 21px 19px #0420276b,0 2px 3px #f5fffb4a inset;transition:translate .18s}
-.app-tile:hover{translate:0 -4px}
+.app-tile{position:absolute;aspect-ratio:1;border-radius:23%;background:var(--tile);display:grid;place-items:center;overflow:hidden;transform:rotateX(22deg) rotateZ(var(--tilt));box-shadow:0 1px 0 var(--edge),-1px 3px 0 var(--edge),-2px 5px 0 var(--edge),-3px 7px 0 var(--edge),-4px 9px 0 var(--edge),-10px 21px 19px #0420276b,0 2px 3px #f5fffb4a inset}
 .app-tile>img{width:100%;height:100%;display:block}
-.tile-bible{width:23%;top:40%;left:18%;z-index:3;--tile:#00a0a9;--edge:#00636e}
-.tile-gift{width:21%;top:12%;left:47%;z-index:2;--tile:#0c285a;--edge:#0c1842;transform:rotateX(22deg) rotateZ(8deg)}
-.tile-radio{width:15.5%;top:64%;left:62%;--tile:#fafaff;--edge:#c4c0d8;transform:rotateX(22deg) rotateZ(12deg)}
+.tile-bible{width:23%;top:40%;left:18%;z-index:3;--tile:#00a0a9;--edge:#00636e;--tilt:-15deg;--sway:3deg;--duration:3.2s;--delay:-.7s}
+.tile-gift{width:21%;top:12%;left:47%;z-index:2;--tile:#0c285a;--edge:#0c1842;--tilt:8deg;--sway:-3deg;--duration:3.7s;--delay:-3.3s}
+.tile-radio{width:15.5%;top:64%;left:62%;--tile:#fafaff;--edge:#c4c0d8;--tilt:12deg;--sway:2.5deg;--duration:2.9s;--delay:-4.6s}
+@keyframes hero-tile-float {
+  from { transform: translateY(0) rotateX(22deg) rotateZ(var(--tilt)); }
+  to { transform: translateY(clamp(-8px, -8%, -3px)) rotateX(22deg) rotateZ(calc(var(--tilt) + var(--sway))); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .app-tile { animation: hero-tile-float var(--duration) ease-in-out var(--delay) infinite alternate; }
+  .app-tile:focus-visible { animation-play-state: paused; }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .app-tile { transition: translate .18s; }
+  .app-tile:hover { animation-play-state: paused; translate: 0 -4px; }
+}
 .radio-symbol{display:block;width:63%;height:65%;overflow:hidden;position:relative}
 .radio-symbol img{position:absolute;height:100%;max-width:none;left:0;top:0}
 #catalog{padding:2.05rem 0 3rem;scroll-margin-top:1.1rem}
